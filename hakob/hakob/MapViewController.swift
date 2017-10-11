@@ -23,6 +23,21 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //亀田支所前(上り)にPinを表示
+        let coordinate = CLLocationCoordinate2D(latitude: 41.81589633,longitude: 140.7539141)
+        let span = MKCoordinateSpanMake(0.005, 0.005)
+        let region = MKCoordinateRegionMake(coordinate, span)
+        self.mapView.setRegion(region, animated:true)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2DMake(41.81589633,140.7539141)
+        annotation.title = "亀田支所前"
+        annotation.subtitle = "105系統（未来大経由）"
+        self.mapView.addAnnotation(annotation)
+        
+        
+        
+        
+        
         //CLLocationManagerをインスタンス化
         myLocationManager = CLLocationManager()
         
