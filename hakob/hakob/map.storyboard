@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="ce7-x9-8mP">
             <objects>
-                <viewController id="fRv-0H-sJc" sceneMemberID="viewController">
+                <viewController id="fRv-0H-sJc" customClass="ViewController" customModule="hakob" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2xr-q6-Yoh"/>
                         <viewControllerLayoutGuide type="bottom" id="MtN-Q1-taA"/>
@@ -30,16 +30,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1D-6B-3Mf">
-                                <rect key="frame" x="164" y="434" width="46" height="30"/>
+                                <rect key="frame" x="160" y="438" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="vKi-3g-ojA" kind="show" id="IBp-vR-XGA"/>
+                                    <segue destination="vKi-3g-ojA" kind="show" identifier="toGetOnBusTimeTable" id="IBp-vR-XGA"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="buttom1" destination="G1D-6B-3Mf" id="zcy-HS-VsI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fby-Vp-tEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -61,52 +64,53 @@
                                 <rect key="frame" x="0.0" y="231" width="375" height="436"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <scrollView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yHd-RV-41I">
+                                    <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </scrollView>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aQm-2u-UNS">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aQm-2u-UNS" id="ASe-3v-vSE">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vKi-3g-ojA" id="wYc-Rs-zXc"/>
+                                    <outlet property="delegate" destination="vKi-3g-ojA" id="Zqf-Or-YZV"/>
+                                </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dPr-im-4d5">
-                                <rect key="frame" x="145" y="101" width="128.5" height="50"/>
+                                <rect key="frame" x="145" y="101" width="97" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Eey-kF-Uu7">
-                                        <rect key="frame" x="0.0" y="0.0" width="128.5" height="50"/>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6JZ-e9-ARa">
-                                <rect key="frame" x="109" y="101" width="157.5" height="38.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="destination" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Mg-PV-w11">
-                                        <rect key="frame" x="0.0" y="0.0" width="157.5" height="38.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Eei-6i-VqE">
-                                <rect key="frame" x="265" y="102" width="100" height="30"/>
+                                <rect key="frame" x="265" y="102" width="31" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aeu-J9-9AQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="31" height="30"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lFH-Cx-lmS">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="31" height="30"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Mxh-QV-39h">
-                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="30"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ofJ-6b-o9C">
-                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="31" height="30"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Au-r8-qIU">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="30"/>
                                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        <state key="normal" title="getOnBusPath">
+                                                                        <state key="normal" title="経路">
                                                                             <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                         </state>
                                                                         <connections>
-                                                                            <segue destination="89f-gk-L4m" kind="show" identifier="getOnBusLine" id="DpD-G8-1v4"/>
+                                                                            <segue destination="89f-gk-L4m" kind="show" identifier="busLine" id="DpD-G8-1v4"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -119,15 +123,15 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="getOnBusStop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mN7-hy-k0Q">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="乗車地" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mN7-hy-k0Q">
                                 <rect key="frame" x="39" y="145" width="118" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="getOffBusStop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5i-Ox-klc">
-                                <rect key="frame" x="231" y="151" width="114" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="降車地" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5i-Ox-klc">
+                                <rect key="frame" x="231" y="151" width="114" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
@@ -145,15 +149,22 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="getOnBusStop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u05-gY-fyu">
-                                <rect key="frame" x="131" y="210" width="112" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="乗車地" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u05-gY-fyu">
+                                <rect key="frame" x="161" y="210" width="52" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="目的地" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Mg-PV-w11">
+                                <rect key="frame" x="139" y="98" width="97" height="38.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rIx-2p-FhS">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="rIx-2p-FhS" secondAttribute="height" multiplier="375:44" id="D90-dC-1iW"/>
                                 </constraints>
@@ -161,7 +172,7 @@
                                     <navigationItem title="Title" id="dQm-3R-IiW">
                                         <barButtonItem key="leftBarButtonItem" title="戻る" id="DfE-0M-7bm">
                                             <connections>
-                                                <segue destination="fRv-0H-sJc" kind="show" identifier="" id="vNn-fB-xGf"/>
+                                                <segue destination="fRv-0H-sJc" kind="show" identifier="backToViewController" id="vNn-fB-xGf"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -171,17 +182,27 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="busLine" destination="5Au-r8-qIU" id="qVk-JG-y2H"/>
+                        <outlet property="delayTime" destination="ua2-nd-86R" id="Qb3-4T-IUa"/>
+                        <outlet property="delayTimeList" destination="ua2-nd-86R" id="hvO-st-LTP"/>
+                        <outlet property="destination" destination="0Mg-PV-w11" id="cgL-fs-Psy"/>
+                        <outlet property="destinationLabel" destination="0Mg-PV-w11" id="sDB-EQ-3yp"/>
+                        <outlet property="getOffBusStop" destination="n5i-Ox-klc" id="EYU-TN-GaY"/>
+                        <outlet property="getOnBusStop" destination="mN7-hy-k0Q" id="CMS-fm-dgn"/>
+                        <outlet property="getOnBusStop2" destination="u05-gY-fyu" id="1LB-OW-D7Y"/>
+                        <outlet property="goal" destination="0Mg-PV-w11" id="ruH-cH-BHW"/>
                         <outlet property="title" destination="rIx-2p-FhS" id="dTg-Ev-CFs"/>
+                        <outlet property="titleBusStop" destination="rIx-2p-FhS" id="duX-ON-X9b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tWk-AA-DNs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="620" y="-159.67016491754123"/>
         </scene>
-        <!--View Controller-->
+        <!--Bus Line-->
         <scene sceneID="Ptc-eL-t0D">
             <objects>
-                <viewController id="89f-gk-L4m" sceneMemberID="viewController">
+                <viewController id="89f-gk-L4m" customClass="busLine" customModule="hakob" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iUg-qq-xhX"/>
                         <viewControllerLayoutGuide type="bottom" id="hzf-1R-zFe"/>
@@ -189,12 +210,63 @@
                     <view key="view" contentMode="scaleToFill" id="938-C7-2jl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zg9-a4-jBn">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SeS-N3-gif">
+                                <rect key="frame" x="0.0" y="336" width="375" height="331"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <scrollView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="pbt-yS-B7t">
+                                    <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </scrollView>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Pfp-Cb-iNm">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pfp-Cb-iNm" id="ASs-Db-XkW">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LvL-F6-8CN">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="LvL-F6-8CN" secondAttribute="height" multiplier="375:44" id="HcH-4y-KcY"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Title" id="rnQ-A9-5A9">
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="CwP-JG-kKX">
+                                            <connections>
+                                                <segue destination="vKi-3g-ojA" kind="show" identifier="backToGetOnBusTimeTable" id="Z2P-xM-ifv"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LvL-F6-8CN" firstAttribute="width" secondItem="LvL-F6-8CN" secondAttribute="height" multiplier="375:44" id="Kls-Kr-tNX"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="busLine" destination="SeS-N3-gif" id="ZjO-Vc-aiC"/>
+                        <outlet property="busLineMap" destination="zg9-a4-jBn" id="Dag-FE-r9M"/>
+                        <outlet property="titleBusStop" destination="LvL-F6-8CN" id="4di-bt-Dkz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ch1-BD-SAJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1460" y="-160"/>
+            <point key="canvasLocation" x="1460" y="-160.56971514242881"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="IBp-vR-XGA"/>
+    </inferredMetricsTieBreakers>
 </document>
