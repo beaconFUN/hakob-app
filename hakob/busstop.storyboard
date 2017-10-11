@@ -39,7 +39,6 @@
                                 <state key="normal" title="検索"/>
                                 <connections>
                                     <action selector="searchButton:" destination="xR1-GP-qJo" eventType="touchUpInside" id="fHn-8d-05e"/>
-                                    <segue destination="yuY-G8-wwq" kind="show" id="eUd-sC-eVa"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -54,6 +53,7 @@
                     <navigationItem key="navigationItem" id="ggr-Tb-RN0"/>
                     <connections>
                         <outlet property="textField" destination="W4F-Rm-FWC" id="dQv-S3-USu"/>
+                        <segue destination="D6I-e9-TeJ" kind="show" identifier="search" id="vLU-Mp-mFk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SO9-q5-9XA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -76,33 +76,49 @@
             </objects>
             <point key="canvasLocation" x="51" y="-320"/>
         </scene>
-        <!--Table View Contoroller-->
-        <scene sceneID="yve-ie-TDs">
+        <!--Table View Controller-->
+        <scene sceneID="t5h-pJ-jwQ">
             <objects>
-                <tableViewController id="yuY-G8-wwq" customClass="TableViewContoroller" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Slb-VY-OIf">
+                <viewController id="D6I-e9-TeJ" customClass="TableViewController" customModule="hakob" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="udi-TW-aPb"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lu6-s8-JKC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Rkm-6V-zWu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="urf-r0-MDP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="WEB-vM-Trr">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WEB-vM-Trr" id="waF-B9-XSj">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="D6I-e9-TeJ" id="7WU-qg-uhH"/>
+                                    <outlet property="delegate" destination="D6I-e9-TeJ" id="yYC-y6-ZO8"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hBL-Wa-iQU">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hBL-Wa-iQU" id="w7x-pu-d1C">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="yuY-G8-wwq" id="96e-XY-wWL"/>
-                            <outlet property="delegate" destination="yuY-G8-wwq" id="220-Pk-XIE"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Uck-XG-GTn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="urf-r0-MDP" firstAttribute="top" secondItem="Rkm-6V-zWu" secondAttribute="top" id="95M-Jl-6ew"/>
+                            <constraint firstItem="Lu6-s8-JKC" firstAttribute="top" secondItem="urf-r0-MDP" secondAttribute="bottom" id="N2z-aw-FrG"/>
+                            <constraint firstAttribute="trailing" secondItem="urf-r0-MDP" secondAttribute="trailing" id="ZC1-ZE-sNO"/>
+                            <constraint firstItem="urf-r0-MDP" firstAttribute="leading" secondItem="Rkm-6V-zWu" secondAttribute="leading" id="sbQ-cs-Asc"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p9p-4f-dFB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1801" y="-321"/>
+            <point key="canvasLocation" x="1824.375" y="-320.07042253521126"/>
         </scene>
     </scenes>
 </document>

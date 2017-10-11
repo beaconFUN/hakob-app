@@ -27,9 +27,6 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate {
         //検索結果配列を空にする。
         searchResult.removeAll()
         
-        // TextFieldから文字を取得
-        searchResult = [textField.text!]
-        
         print("バス停リスト：\(searchResult)") //テスト
         let textfield:[String] = textField.text!.components(separatedBy: " ")
         
@@ -45,7 +42,7 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate {
                 searchResult.append(busstop)
             }
         }
-
+        performSegue(withIdentifier: "search", sender: nil)
         
     }
 
@@ -57,7 +54,6 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate {
     }
 
     
-    
     //警告受信メソッド
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -65,11 +61,11 @@ class TextFieldViewController: UIViewController, UITextFieldDelegate {
     }
 
     //値渡し
-    override func prerare(for segue: UIStoryboardSegue,
-                          sender: Any?) {
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let TableVC = segue.destination as! TableViewController
+        TableVC.resultList = searchResult
     }
-    
+
     /*
     // MARK: - Navigation
 
