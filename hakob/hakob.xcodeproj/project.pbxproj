@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		61DB75CA1F8760B800C94AD1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DB75C91F8760B800C94AD1 /* MapViewController.swift */; };
+		61DB75CD1F87627C00C94AD1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DB75CC1F87627C00C94AD1 /* MapKit.framework */; };
+		61DB75CF1F8769D600C94AD1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DB75CE1F8769D600C94AD1 /* CoreLocation.framework */; };
 		687359591F876A7400C10981 /* TextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687359581F876A7400C10981 /* TextFieldViewController.swift */; };
 		6873595B1F8DF42500C10981 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6873595A1F8DF42500C10981 /* TableViewController.swift */; };
 		74095F901F84B996005FFED6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74095F8F1F84B996005FFED6 /* AppDelegate.swift */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		61DB75C91F8760B800C94AD1 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		61DB75CC1F87627C00C94AD1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		61DB75CE1F8769D600C94AD1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		687359581F876A7400C10981 /* TextFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextFieldViewController.swift; path = ../TextFieldViewController.swift; sourceTree = "<group>"; };
 		6873595A1F8DF42500C10981 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		74095F8C1F84B996005FFED6 /* hakob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hakob.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,17 +45,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61DB75CF1F8769D600C94AD1 /* CoreLocation.framework in Frameworks */,
+				61DB75CD1F87627C00C94AD1 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		61DB75CB1F87627C00C94AD1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				61DB75CE1F8769D600C94AD1 /* CoreLocation.framework */,
+				61DB75CC1F87627C00C94AD1 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		74095F831F84B996005FFED6 = {
 			isa = PBXGroup;
 			children = (
 				74095F8E1F84B996005FFED6 /* hakob */,
 				74095F8D1F84B996005FFED6 /* Products */,
+				61DB75CB1F87627C00C94AD1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +88,7 @@
 				74095F911F84B996005FFED6 /* ViewController.swift */,
 				74095F931F84B996005FFED6 /* Main.storyboard */,
 				74501A591F87574F0047EA2B /* map.storyboard */,
+				61DB75C91F8760B800C94AD1 /* MapViewController.swift */,
 				74501A5B1F87575D0047EA2B /* busstop.storyboard */,
 				74095F991F84B996005FFED6 /* Assets.xcassets */,
 				74095F9B1F84B996005FFED6 /* LaunchScreen.storyboard */,
@@ -158,6 +177,7 @@
 				74095F901F84B996005FFED6 /* AppDelegate.swift in Sources */,
 				6873595B1F8DF42500C10981 /* TableViewController.swift in Sources */,
 				74095F981F84B996005FFED6 /* hakob.xcdatamodeld in Sources */,
+				61DB75CA1F8760B800C94AD1 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +302,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = hakob/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sattotto.hakob;
@@ -294,6 +315,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = hakob/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sattotto.hakob;
