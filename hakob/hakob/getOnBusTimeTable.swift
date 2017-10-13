@@ -24,7 +24,7 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        destinationLabel.text = destination[0]
+        destinationLabel.text = "目的地：" + destination[0]
         getOnBusStop.text = busStop[0]
         getOffBusStop.text = busStop[4]
         getOnBusStop2.text = getOnBusStop.text
