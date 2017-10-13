@@ -26,7 +26,7 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         // Do any additional setup after loading the view.
         destinationLabel.text = destination[0]
         getOnBusStop.text = busStop[0]
-        getOffBusStop.text = busStop[busStop.count]
+        getOffBusStop.text = busStop[4]
         getOnBusStop2.text = getOnBusStop.text
         titleBusStop.accessibilityLabel = getOnBusStop.text
     }

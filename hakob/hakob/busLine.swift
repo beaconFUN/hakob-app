@@ -11,6 +11,7 @@ import UIKit
 class busLine: UIViewController {
     @IBOutlet weak var titleBusStop: UINavigationBar!
     @IBOutlet weak var busLine: UITableView!
+    //@IBOutlet weak var busLineMap: MKMapView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
