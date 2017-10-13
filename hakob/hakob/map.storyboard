@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g3q-tl-yyO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A405" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g3q-tl-yyO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -52,10 +52,18 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PQn-XP-20A">
                                 <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                             </mapView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="fcZ-I5-JbE">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="YYx-uC-5dY" secondAttribute="trailing" id="0Pc-RR-UmH"/>
+                            <constraint firstItem="PQn-XP-20A" firstAttribute="top" secondItem="fcZ-I5-JbE" secondAttribute="bottom" id="3aJ-9e-MMC"/>
+                            <constraint firstAttribute="trailing" secondItem="fcZ-I5-JbE" secondAttribute="trailing" id="41s-Xt-a0t"/>
+                            <constraint firstItem="fcZ-I5-JbE" firstAttribute="top" secondItem="2xr-q6-Yoh" secondAttribute="bottom" id="99D-NB-beb"/>
+                            <constraint firstItem="fcZ-I5-JbE" firstAttribute="leading" secondItem="iYF-ZB-HIz" secondAttribute="leading" id="Oby-l6-ZxY"/>
                             <constraint firstAttribute="trailing" secondItem="PQn-XP-20A" secondAttribute="trailing" id="Pwy-mD-T64"/>
                             <constraint firstItem="PQn-XP-20A" firstAttribute="leading" secondItem="iYF-ZB-HIz" secondAttribute="leading" id="Y0X-Ih-AxD"/>
                             <constraint firstItem="YYx-uC-5dY" firstAttribute="top" secondItem="2xr-q6-Yoh" secondAttribute="bottom" id="cfQ-cJ-ekg"/>
@@ -100,7 +108,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aQm-2u-UNS" id="ASe-3v-vSE">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -163,11 +171,7 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="Title" id="dQm-3R-IiW">
-                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="DfE-0M-7bm">
-                                            <connections>
-                                                <segue destination="fRv-0H-sJc" kind="show" identifier="backToViewController" id="vNn-fB-xGf"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="DfE-0M-7bm"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -211,7 +215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tWk-AA-DNs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="620" y="-159.67016491754123"/>
+            <point key="canvasLocation" x="-719" y="162"/>
         </scene>
         <!--Bus Line-->
         <scene sceneID="Ptc-eL-t0D">
@@ -246,12 +250,9 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pfp-Cb-iNm" id="ASs-Db-XkW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="89f-gk-L4m" kind="show" id="U1e-ie-4u0"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -262,11 +263,7 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="Title" id="rnQ-A9-5A9">
-                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="CwP-JG-kKX">
-                                            <connections>
-                                                <segue destination="vKi-3g-ojA" kind="show" identifier="backToGetOnBusTimeTable" id="Z2P-xM-ifv"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="CwP-JG-kKX"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -293,11 +290,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ch1-BD-SAJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1460" y="-160.56971514242881"/>
+            <point key="canvasLocation" x="121" y="161"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="DpD-G8-1v4"/>
-        <segue reference="Z2P-xM-ifv"/>
-    </inferredMetricsTieBreakers>
 </document>
