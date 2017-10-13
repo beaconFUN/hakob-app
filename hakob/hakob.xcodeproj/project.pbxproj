@@ -20,6 +20,8 @@
 		74095F9D1F84B996005FFED6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74095F9B1F84B996005FFED6 /* LaunchScreen.storyboard */; };
 		74501A5A1F87574F0047EA2B /* map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74501A591F87574F0047EA2B /* map.storyboard */; };
 		74501A5C1F87575D0047EA2B /* busstop.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74501A5B1F87575D0047EA2B /* busstop.storyboard */; };
+		A97CD40E1F8E03180009D92A /* busLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97CD40D1F8E03180009D92A /* busLine.swift */; };
+		A9A4685B1F87739D00DBB55F /* getOnBusTimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A4685A1F87739D00DBB55F /* getOnBusTimeTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		74095F9E1F84B996005FFED6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74501A591F87574F0047EA2B /* map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = map.storyboard; sourceTree = "<group>"; };
 		74501A5B1F87575D0047EA2B /* busstop.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = busstop.storyboard; path = ../busstop.storyboard; sourceTree = "<group>"; };
+		A97CD40D1F8E03180009D92A /* busLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = busLine.swift; sourceTree = "<group>"; };
+		A9A4685A1F87739D00DBB55F /* getOnBusTimeTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getOnBusTimeTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 				74095F911F84B996005FFED6 /* ViewController.swift */,
 				74095F931F84B996005FFED6 /* Main.storyboard */,
 				74501A591F87574F0047EA2B /* map.storyboard */,
+				A97CD40D1F8E03180009D92A /* busLine.swift */,
+				A9A4685A1F87739D00DBB55F /* getOnBusTimeTable.swift */,
 				61DB75C91F8760B800C94AD1 /* MapViewController.swift */,
 				74501A5B1F87575D0047EA2B /* busstop.storyboard */,
 				74095F991F84B996005FFED6 /* Assets.xcassets */,
@@ -172,8 +178,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9A4685B1F87739D00DBB55F /* getOnBusTimeTable.swift in Sources */,
 				687359591F876A7400C10981 /* TextFieldViewController.swift in Sources */,
 				74095F921F84B996005FFED6 /* ViewController.swift in Sources */,
+				A97CD40E1F8E03180009D92A /* busLine.swift in Sources */,
 				74095F901F84B996005FFED6 /* AppDelegate.swift in Sources */,
 				6873595B1F8DF42500C10981 /* TableViewController.swift in Sources */,
 				74095F981F84B996005FFED6 /* hakob.xcdatamodeld in Sources */,
