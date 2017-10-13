@@ -75,6 +75,7 @@
                     <navigationItem key="navigationItem" title="降車地を選択" id="opd-1v-KTq"/>
                     <connections>
                         <outlet property="mapView" destination="PQn-XP-20A" id="odL-nm-Gkk"/>
+                        <outlet property="searchBar" destination="fcZ-I5-JbE" id="Gg5-bW-9vl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fby-Vp-tEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
