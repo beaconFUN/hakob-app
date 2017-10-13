@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import MapKit
 
 class busLine: UIViewController {
     @IBOutlet weak var titleBusStop: UINavigationBar!
     @IBOutlet weak var busLine: UITableView!
+    @IBOutlet weak var aaa: MKMapView!
     //@IBOutlet weak var busLineMap: MKMapView!
 
     override func viewDidLoad() {
