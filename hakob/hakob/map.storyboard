@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A405" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g3q-tl-yyO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g3q-tl-yyO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -38,10 +38,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="バス停名" translatesAutoresizingMaskIntoConstraints="NO" id="YYx-uC-5dY">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="znu-Ly-N8Q">
                                 <rect key="frame" x="-16" y="0.0" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -52,30 +48,26 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PQn-XP-20A">
                                 <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                             </mapView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="fcZ-I5-JbE">
+                            <searchBar contentMode="redraw" placeholder="バス停" translatesAutoresizingMaskIntoConstraints="NO" id="qiM-eB-crk">
                                 <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="YYx-uC-5dY" secondAttribute="trailing" id="0Pc-RR-UmH"/>
-                            <constraint firstItem="PQn-XP-20A" firstAttribute="top" secondItem="fcZ-I5-JbE" secondAttribute="bottom" id="3aJ-9e-MMC"/>
-                            <constraint firstAttribute="trailing" secondItem="fcZ-I5-JbE" secondAttribute="trailing" id="41s-Xt-a0t"/>
-                            <constraint firstItem="fcZ-I5-JbE" firstAttribute="top" secondItem="2xr-q6-Yoh" secondAttribute="bottom" id="99D-NB-beb"/>
-                            <constraint firstItem="fcZ-I5-JbE" firstAttribute="leading" secondItem="iYF-ZB-HIz" secondAttribute="leading" id="Oby-l6-ZxY"/>
+                            <constraint firstAttribute="trailing" secondItem="qiM-eB-crk" secondAttribute="trailing" id="2tM-hq-Rdh"/>
                             <constraint firstAttribute="trailing" secondItem="PQn-XP-20A" secondAttribute="trailing" id="Pwy-mD-T64"/>
                             <constraint firstItem="PQn-XP-20A" firstAttribute="leading" secondItem="iYF-ZB-HIz" secondAttribute="leading" id="Y0X-Ih-AxD"/>
-                            <constraint firstItem="YYx-uC-5dY" firstAttribute="top" secondItem="2xr-q6-Yoh" secondAttribute="bottom" id="cfQ-cJ-ekg"/>
+                            <constraint firstItem="qiM-eB-crk" firstAttribute="top" secondItem="2xr-q6-Yoh" secondAttribute="bottom" id="aIZ-er-yVO"/>
                             <constraint firstItem="MtN-Q1-taA" firstAttribute="top" secondItem="PQn-XP-20A" secondAttribute="bottom" id="der-La-SrC"/>
-                            <constraint firstItem="PQn-XP-20A" firstAttribute="top" secondItem="YYx-uC-5dY" secondAttribute="bottom" id="us0-Na-HeK"/>
-                            <constraint firstItem="YYx-uC-5dY" firstAttribute="leading" secondItem="iYF-ZB-HIz" secondAttribute="leading" id="xuC-EP-yIC"/>
+                            <constraint firstItem="PQn-XP-20A" firstAttribute="top" secondItem="qiM-eB-crk" secondAttribute="bottom" id="eMl-M1-C5w"/>
+                            <constraint firstItem="qiM-eB-crk" firstAttribute="leading" secondItem="iYF-ZB-HIz" secondAttribute="leading" id="uRf-bL-Uiu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="降車地を選択" id="opd-1v-KTq"/>
                     <connections>
                         <outlet property="mapView" destination="PQn-XP-20A" id="odL-nm-Gkk"/>
-                        <outlet property="searchBar" destination="fcZ-I5-JbE" id="Gg5-bW-9vl"/>
+                        <outlet property="searchBar" destination="qiM-eB-crk" id="idD-z2-4ng"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fby-Vp-tEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -154,13 +146,13 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="乗車地" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u05-gY-fyu">
-                                <rect key="frame" x="161" y="210.5" width="52" height="20.5"/>
+                                <rect key="frame" x="161.5" y="210.5" width="52" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目的地" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Mg-PV-w11">
-                                <rect key="frame" x="139" y="98.5" width="97" height="38.5"/>
+                                <rect key="frame" x="139" y="98" width="97" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

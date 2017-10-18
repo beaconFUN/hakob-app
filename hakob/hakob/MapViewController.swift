@@ -10,12 +10,12 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController,CLLocationManagerDelegate {
-
+class MapViewController: UIViewController,CLLocationManagerDelegate, UISearchBarDelegate {
+    
     @IBOutlet weak var mapView: MKMapView!
     
     @IBOutlet weak var searchBar: UISearchBar!
-
+    //
     var nameResult = [""]
     
     //バス停名
@@ -35,21 +35,21 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
     
     //CLLocationManagerの入れ物を用意
     var myLocationManager:CLLocationManager!
+    var busAnnotations: [MKAnnotation]! = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //バス停表示(下り)
         for i in 0..<11 {
-        let coordinate = CLLocationCoordinate2D(latitude: latdown[i] ,longitude: londown[i])
-        let span = MKCoordinateSpanMake(0.001, 0.001)
-        let region = MKCoordinateRegionMake(coordinate, span)
-        self.mapView.setRegion(region, animated:true)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2DMake(latdown[i],londown[i])
-        annotation.title = name[i]
-        annotation.subtitle = "105系統（未来大経由)"
-        self.mapView.addAnnotation(annotation)
+            let coordinate = CLLocationCoordinate2D(latitude: latdown[i] ,longitude: londown[i])
+            let span = MKCoordinateSpanMake(0.001, 0.001)
+            let region = MKCoordinateRegionMake(coordinate, span)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2DMake(latdown[i],londown[i])
+            annotation.title = name[i]
+            annotation.subtitle = "105系統（未来大経由)"
+            self.busAnnotations.append(annotation)
         }
         
         //バス停表示(上り)
@@ -62,11 +62,10 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
             annotation.coordinate = CLLocationCoordinate2DMake(latup[i],lonup[i])
             annotation.title = name[i]
             annotation.subtitle = "55系統"
-            self.mapView.addAnnotation(annotation)
+            self.busAnnotations.append(annotation)
         }
         
-        
-        
+        self.mapView.addAnnotations(busAnnotations)
         
         //CLLocationManagerをインスタンス化
         myLocationManager = CLLocationManager()
@@ -74,10 +73,18 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
         //位置情報使用許可のリクエストを表示するメソッドの呼び出し
         myLocationManager.requestWhenInUseAuthorization()
         myLocationManager.startUpdatingLocation()
-
+        
         mapView.userTrackingMode = .follow
         
         mapView.setCenter(mapView.userLocation.coordinate, animated: true)
+        
+        //デリゲート先を自分に設定する。
+        searchBar.delegate = self
+        
+        //何も入力されていなくてもReturnキーを押せるようにする。
+        searchBar.enablesReturnKeyAutomatically = false
+        
+        
         
         // Do any additional setup after loading the view.
     }
@@ -86,30 +93,47 @@ class MapViewController: UIViewController,CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error")
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    //検索窓の設定
     
-    func searchBarButton(searchBar: UISearchBar){
-        for i in name {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        self.mapView.removeAnnotations(busAnnotations)
+        searchBar.endEditing(true)
+        busAnnotations.removeAll()
+        
+        for i in 0..<name.count {
             if(searchBar.text == "") {
                 
-            } else if (i.contains(searchBar.text!)) {
-                nameResult.append(i)
+            } else if (name[i].contains(searchBar.text!)) {
+                nameResult.append(name[i])
+                
+                let coordinate = CLLocationCoordinate2D(latitude: (latup[i]+latdown[i])/2 ,longitude: (lonup[i]+londown[i])/2)
+                let span = MKCoordinateSpanMake(0.001, 0.001)
+                let region = MKCoordinateRegionMake(coordinate, span)
+                self.mapView.setRegion(region, animated:true)
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = CLLocationCoordinate2DMake((latup[i]+latdown[i])/2,(lonup[i]+londown[i])/2)
+                annotation.title = name[i]
+                annotation.subtitle = "おおよその位置"
+                self.busAnnotations.append(annotation)
             }
         }
-    }
+        self.mapView.addAnnotations(busAnnotations)
 
+    }
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
