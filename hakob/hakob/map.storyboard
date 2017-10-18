@@ -61,26 +61,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ua2-nd-86R">
-                                <rect key="frame" x="0.0" y="231" width="375" height="436"/>
+                                <rect key="frame" x="0.0" y="291" width="375" height="376"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <scrollView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yHd-RV-41I">
-                                    <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="vKi-3g-ojA" id="zwj-nQ-j2j"/>
-                                    </connections>
-                                </scrollView>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aQm-2u-UNS">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="delayTime" id="aQm-2u-UNS">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aQm-2u-UNS" id="ASe-3v-vSE">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="89f-gk-L4m" kind="show" identifier="toBusLine" id="bTA-RG-WPZ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
+                                    <outlet property="dataSource" destination="vKi-3g-ojA" id="ENS-yu-KX1"/>
                                     <outlet property="delegate" destination="vKi-3g-ojA" id="Zqf-Or-YZV"/>
                                 </connections>
                             </tableView>
@@ -91,12 +88,6 @@
                                     <constraint firstAttribute="height" constant="31.5" id="npo-pD-R5I"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="乗車地" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u05-gY-fyu">
-                                <rect key="frame" x="161" y="210.5" width="52" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -125,17 +116,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Au-r8-qIU">
-                                <rect key="frame" x="265" y="102" width="31" height="30"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="5Au-r8-qIU" secondAttribute="height" multiplier="31:30" id="aSd-xF-9jV"/>
-                                </constraints>
-                                <state key="normal" title="経路"/>
-                                <connections>
-                                    <segue destination="89f-gk-L4m" kind="show" identifier="busLine" id="DpD-G8-1v4"/>
-                                </connections>
-                            </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rIx-2p-FhS">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <constraints>
@@ -151,36 +131,39 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="乗車地" textAlignment="center" lineBreakMode="clip" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1CT-6x-mL3">
+                                <rect key="frame" x="161" y="244" width="52" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="0Mg-PV-w11" firstAttribute="centerY" secondItem="bPO-XX-2IU" secondAttribute="centerY" constant="-216.25" id="1Ij-Oy-x8o"/>
                             <constraint firstItem="mN7-hy-k0Q" firstAttribute="centerY" secondItem="bPO-XX-2IU" secondAttribute="centerY" constant="-172.5" id="79F-EE-ibR"/>
-                            <constraint firstItem="u05-gY-fyu" firstAttribute="centerY" secondItem="bPO-XX-2IU" secondAttribute="centerY" constant="-113" id="DBq-eT-8dq"/>
+                            <constraint firstItem="ua2-nd-86R" firstAttribute="centerY" secondItem="bPO-XX-2IU" secondAttribute="centerY" constant="145.5" id="7Q9-Hn-VQK"/>
+                            <constraint firstItem="1CT-6x-mL3" firstAttribute="centerY" secondItem="bPO-XX-2IU" secondAttribute="centerY" constant="-79" id="Ccv-Pd-jel"/>
                             <constraint firstItem="rIx-2p-FhS" firstAttribute="centerX" secondItem="bPO-XX-2IU" secondAttribute="centerX" id="EyJ-et-vxX"/>
-                            <constraint firstItem="5Au-r8-qIU" firstAttribute="centerY" secondItem="bPO-XX-2IU" secondAttribute="centerY" constant="-216.5" id="GCr-8o-zqP"/>
+                            <constraint firstItem="1CT-6x-mL3" firstAttribute="centerX" secondItem="bPO-XX-2IU" secondAttribute="centerX" id="MP4-ad-OxM"/>
                             <constraint firstItem="ua2-nd-86R" firstAttribute="leading" secondItem="rIx-2p-FhS" secondAttribute="leading" id="Nx2-Ej-Zie"/>
                             <constraint firstItem="vPC-eJ-RjM" firstAttribute="centerX" secondItem="bPO-XX-2IU" secondAttribute="centerX" id="S1k-yZ-BUy"/>
                             <constraint firstItem="vPC-eJ-RjM" firstAttribute="centerY" secondItem="bPO-XX-2IU" secondAttribute="centerY" constant="-172" id="Tbe-Cc-0Ap"/>
                             <constraint firstItem="mN7-hy-k0Q" firstAttribute="centerX" secondItem="bPO-XX-2IU" secondAttribute="centerX" constant="-89.5" id="Tob-zA-8eA"/>
                             <constraint firstItem="ua2-nd-86R" firstAttribute="centerX" secondItem="bPO-XX-2IU" secondAttribute="centerX" id="UcC-8A-t90"/>
-                            <constraint firstItem="u05-gY-fyu" firstAttribute="centerX" secondItem="bPO-XX-2IU" secondAttribute="centerX" id="Zcw-ID-5Rz"/>
                             <constraint firstItem="rIx-2p-FhS" firstAttribute="centerY" secondItem="bPO-XX-2IU" secondAttribute="centerY" constant="-283.5" id="ajJ-pD-GU7"/>
                             <constraint firstItem="5Ir-fV-ZWn" firstAttribute="centerY" secondItem="bPO-XX-2IU" secondAttribute="centerY" constant="-172.5" id="kE4-GR-S4E"/>
                             <constraint firstItem="ua2-nd-86R" firstAttribute="bottom" secondItem="SJB-Ly-hfi" secondAttribute="top" id="khz-QC-uIu"/>
-                            <constraint firstItem="ua2-nd-86R" firstAttribute="centerY" secondItem="bPO-XX-2IU" secondAttribute="centerY" constant="115.5" id="mdb-x4-wiD"/>
-                            <constraint firstItem="5Au-r8-qIU" firstAttribute="centerX" secondItem="bPO-XX-2IU" secondAttribute="centerX" constant="93" id="pE0-2N-E5X"/>
                             <constraint firstItem="5Ir-fV-ZWn" firstAttribute="centerX" secondItem="bPO-XX-2IU" secondAttribute="centerX" constant="92.5" id="sdu-Ua-i22"/>
                             <constraint firstItem="0Mg-PV-w11" firstAttribute="centerX" secondItem="bPO-XX-2IU" secondAttribute="centerX" id="zhD-my-JWk"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="busLine" destination="5Au-r8-qIU" id="26A-TN-tTo"/>
                         <outlet property="delayTimeList" destination="ua2-nd-86R" id="QK5-cv-88E"/>
                         <outlet property="destinationLabel" destination="0Mg-PV-w11" id="JRd-s2-fkh"/>
                         <outlet property="getOffBusStop" destination="5Ir-fV-ZWn" id="TT6-Q7-NtV"/>
                         <outlet property="getOnBusStop" destination="mN7-hy-k0Q" id="DYK-fV-W8M"/>
-                        <outlet property="getOnBusStop2" destination="u05-gY-fyu" id="QOO-ww-WBs"/>
+                        <outlet property="getOnBusStop2" destination="1CT-6x-mL3" id="IMD-Qb-6G7"/>
                         <outlet property="titleBusStop" destination="rIx-2p-FhS" id="DB9-ik-PCJ"/>
                     </connections>
                 </viewController>
@@ -271,7 +254,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DpD-G8-1v4"/>
+        <segue reference="bTA-RG-WPZ"/>
         <segue reference="Z2P-xM-ifv"/>
     </inferredMetricsTieBreakers>
 </document>
