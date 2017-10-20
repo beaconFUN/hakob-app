@@ -11,7 +11,7 @@ import UIKit
 class TextFieldViewController: UIViewController, UITextFieldDelegate {
 
     //バス停のリスト
-    let busStopList = ["富岡", "亀田支所", "はこだて未来大学","はこだて未来大学"];
+    let busStopList = ["はこだて未来大学","赤川貯水池", "赤川3区","赤川小学校","浄水場下","低区貯水池","赤川入口","赤川１丁目ライフプレステージ白ゆり美原前","赤川通","函館地方気象台前","亀田支所前"];
     //検索結果配列
     var searchResult = [""];
     
