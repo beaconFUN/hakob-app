@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fRv-0H-sJc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A405" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fRv-0H-sJc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,28 +21,8 @@
                     <view key="view" contentMode="scaleToFill" id="iYF-ZB-HIz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="map" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVf-Hb-hPU">
-                                <rect key="frame" x="166" y="323" width="34" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1D-6B-3Mf">
-                                <rect key="frame" x="160" y="438" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="vKi-3g-ojA" kind="show" identifier="toGetOnBusTimeTable" id="IBp-vR-XGA"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="buttom1" destination="G1D-6B-3Mf" id="zcy-HS-VsI"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fby-Vp-tEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -139,11 +119,7 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="Title" id="dQm-3R-IiW">
-                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="DfE-0M-7bm">
-                                            <connections>
-                                                <segue destination="fRv-0H-sJc" kind="show" identifier="backToViewController" id="vNn-fB-xGf"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="DfE-0M-7bm"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -185,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tWk-AA-DNs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="620" y="-159.67016491754123"/>
+            <point key="canvasLocation" x="-175" y="646"/>
         </scene>
         <!--Bus Line-->
         <scene sceneID="Ptc-eL-t0D">
@@ -220,12 +196,9 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pfp-Cb-iNm" id="ASs-Db-XkW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="89f-gk-L4m" kind="show" id="U1e-ie-4u0"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -233,11 +206,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="rnQ-A9-5A9">
-                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="CwP-JG-kKX">
-                                            <connections>
-                                                <segue destination="vKi-3g-ojA" kind="show" identifier="backToGetOnBusTimeTable" id="Z2P-xM-ifv"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="leftBarButtonItem" title="戻る" id="CwP-JG-kKX"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -266,11 +235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ch1-BD-SAJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1460" y="-160.56971514242881"/>
+            <point key="canvasLocation" x="796" y="646"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="bTA-RG-WPZ"/>
-        <segue reference="Z2P-xM-ifv"/>
-    </inferredMetricsTieBreakers>
 </document>
