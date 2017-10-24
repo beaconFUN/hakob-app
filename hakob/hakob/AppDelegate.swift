@@ -307,7 +307,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 print(myBeaconDetails)
                 beaconDetails.add(myBeaconDetails)
                 
-                if proximity == "Near" || proximity == "Immediate" {
+                if proximity == "Far" {
                     if majorID == 1 && minorID == 65535 {
                         NotificationManager.postLocalNotificationIfNeeded(message: "亀田支所", major: Int(majorID), minor: Int(minorID))
                     }
