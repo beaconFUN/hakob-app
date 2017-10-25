@@ -23,7 +23,6 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet weak var titleBusStop: UINavigationBar!
     @IBOutlet weak var destinationLabel: UILabel!
-    @IBOutlet weak var busLine: UIButton!
     @IBOutlet weak var getOnBusStop: UILabel!
     @IBOutlet weak var getOffBusStop: UILabel!
     @IBOutlet weak var delayTimeList: UITableView!
@@ -52,6 +51,11 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
         num = cal_comp.hour!
+        for i in 0 ..< delayTime.count {
+            if delayTime[i] < 0 {
+                cellNum += 1
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,12 +70,7 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         // セルの数を設定
-        for i in 0 ..< delayTime.count {
-            if delayTime[i] < 0 {
-                cellNum += 1
-            }
-        }
-        return stopTime.count-cellNum
+        return stopTime.count - cellNum// stopTime.count
     }
     
     // セルに値を設定するデータメソッド(必須)
@@ -82,19 +81,25 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         let cell: UITableViewCell =
             tableView.dequeueReusableCell(withIdentifier:
                 "delayTime", for: indexPath)
-        
+
+        // セルに表示する値を設定する
+        /*
         // Tagが1の部品にアクセス
         cellLabel1 = cell.viewWithTag(1) as! UILabel
-        cellLabel1.text = String(stopTime[cellNum]/60) + ":" + String(format: "%02d", stopTime[cellNum]%60)
+            cellLabel1.text = String(stopTime[indexPath.row]/60) + ":" + String(format: "%02d", stopTime[indexPath.row]%60)
         
         // Tagが2の部品にアクセス
         cellLabel2 = cell.viewWithTag(2) as! UILabel
-        cellLabel2.text = "あと" + String(delayTime[indexPath.row+cellNum]) + "分で到着"
-        
-        // セルに表示する値を設定する
-/*
-        cell.textLabel!.text = stopTime[indexPath.row]
- */
+        cellLabel2.text = "あと" + String(delayTime[indexPath.row]) + "分で到着"
+         */
+        // Tagが1の部品にアクセス
+            cellLabel1 = cell.viewWithTag(1) as! UILabel
+            cellLabel1.text = String(stopTime[cellNum]/60) + ":" + String(format: "%02d", stopTime[cellNum]%60)
+            
+            // Tagが2の部品にアクセス
+            cellLabel2 = cell.viewWithTag(2) as! UILabel
+            cellLabel2.text = "あと" + String(delayTime[cellNum]) + "分で到着"
+            cellNum+=1
         return cell
     }
     

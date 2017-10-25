@@ -287,4 +287,8 @@
             <point key="canvasLocation" x="796" y="646"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="bTA-RG-WPZ"/>
+        <segue reference="IBp-vR-XGA"/>
+    </inferredMetricsTieBreakers>
 </document>
