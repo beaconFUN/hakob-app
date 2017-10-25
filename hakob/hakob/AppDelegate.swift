@@ -127,6 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         myLocationManager.desiredAccuracy = kCLLocationAccuracyBest
         // 取得頻度の設定.(1mごとに位置情報取得)
         myLocationManager.distanceFilter = 1
+        
         // セキュリティ認証のステータスを取得
         let status = CLLocationManager.authorizationStatus()
         print("CLAuthorizedStatus: \(status.rawValue)");
@@ -326,6 +327,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         // Rangingを始める (Ranginghあ1秒ごとに呼ばれるので、検出中のiBeaconがなくなったら止める)
         manager.startRangingBeacons(in: region as! CLBeaconRegion)
+        manager.startUpdatingLocation()
     }
     
     /*
@@ -336,6 +338,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         // 検出中のiBeaconが存在しないのなら、iBeaconのモニタリングを終了する.
         manager.stopRangingBeacons(in: region as! CLBeaconRegion)
+        manager.stopUpdatingLocation()
     }
 
 }
