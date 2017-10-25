@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="fRv-0H-sJc" kind="relationship" relationship="rootViewController" id="ve6-Kn-W0F"/>
+                        <segue destination="vKi-3g-ojA" kind="relationship" relationship="rootViewController" id="aQ9-Dv-q1x"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2C-jY-WBD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -116,9 +116,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="89f-gk-L4m" kind="show" identifier="toBusLine" id="bTA-RG-WPZ"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -199,6 +196,7 @@
                             <constraint firstItem="0Mg-PV-w11" firstAttribute="centerX" secondItem="bPO-XX-2IU" secondAttribute="centerX" id="zhD-my-JWk"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="2Ln-GM-YPG"/>
                     <connections>
                         <outlet property="delayTimeList" destination="ua2-nd-86R" id="QK5-cv-88E"/>
                         <outlet property="destinationLabel" destination="0Mg-PV-w11" id="JRd-s2-fkh"/>
@@ -206,11 +204,12 @@
                         <outlet property="getOnBusStop" destination="mN7-hy-k0Q" id="DYK-fV-W8M"/>
                         <outlet property="getOnBusStop2" destination="1CT-6x-mL3" id="IMD-Qb-6G7"/>
                         <outlet property="titleBusStop" destination="rIx-2p-FhS" id="DB9-ik-PCJ"/>
+                        <segue destination="89f-gk-L4m" kind="show" identifier="toBusLine" id="4Hy-HU-WUd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tWk-AA-DNs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-175" y="646"/>
+            <point key="canvasLocation" x="-628" y="125"/>
         </scene>
         <!--Bus Line-->
         <scene sceneID="Ptc-eL-t0D">
@@ -225,7 +224,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zg9-a4-jBn">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SeS-N3-gif">
                                 <rect key="frame" x="0.0" y="336" width="375" height="331"/>
@@ -233,16 +232,16 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="331" id="0Cv-Vw-4VE"/>
                                 </constraints>
-                                <scrollView key="tableFooterView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="pbt-yS-B7t">
-                                    <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <scrollView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="pbt-yS-B7t">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <connections>
                                         <outlet property="delegate" destination="89f-gk-L4m" id="oN9-S9-nrY"/>
                                     </connections>
                                 </scrollView>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Pfp-Cb-iNm">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="busStops" id="Pfp-Cb-iNm">
+                                        <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pfp-Cb-iNm" id="ASs-Db-XkW">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -250,9 +249,13 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="89f-gk-L4m" id="dZt-Mx-rkZ"/>
+                                    <outlet property="delegate" destination="89f-gk-L4m" id="SYz-VR-XVO"/>
+                                </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LvL-F6-8CN">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="rnQ-A9-5A9">
                                         <barButtonItem key="leftBarButtonItem" title="戻る" id="CwP-JG-kKX"/>
@@ -284,11 +287,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ch1-BD-SAJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="796" y="646"/>
+            <point key="canvasLocation" x="121" y="125"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="bTA-RG-WPZ"/>
-        <segue reference="IBp-vR-XGA"/>
-    </inferredMetricsTieBreakers>
 </document>
