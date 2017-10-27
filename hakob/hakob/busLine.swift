@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class busLine: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class busLine: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, MKMapViewDelegate {
     
     var busStops105 = [""]
         //["函館駅前5番のりば", "松風町(1)プレイガイド前", "松風町(2)セブンイレブン前", "新川町", "千歳町", "昭和橋", "堀川町", "千代台", "中央病院前", "五稜郭(1)シダックス前", "五稜郭公園入口", "警察署前警察署向かい", "田家入口", "医師会病院前", "富岡", "亀田支所前(1)至赤川", "函館地方気象台前", "赤川通", "赤川1丁目ライフプレステージ白ゆり美原前", "赤川入口", "低区貯水池", "浄水場下", "赤川小学校", "赤川3区", "赤川貯水池", "はこだて未来大学", "赤川4区", "下赤川", "赤川"]
