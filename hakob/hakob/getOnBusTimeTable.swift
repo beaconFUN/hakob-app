@@ -104,7 +104,7 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         // Tagが2の部品にアクセス
             cellLabel2 = cell.viewWithTag(2) as! UILabel
             cellLabel2.text = "あと" + String(delayTime[cellNum]) + "分で到着"
-        if (cellNum < 24) { cellNum+=1 }
+        if (cellNum < 23) { cellNum+=1 }
         return cell
     }
     
@@ -123,7 +123,7 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         var BusLine = segue.destination as! busLine
-        BusLine.busStops105 = busStop
+        BusLine.busStops105 = busStop!
     }
 
 }
