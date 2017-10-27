@@ -71,6 +71,7 @@
                     <connections>
                         <outlet property="mapView" destination="PQn-XP-20A" id="odL-nm-Gkk"/>
                         <outlet property="searchBar" destination="qiM-eB-crk" id="idD-z2-4ng"/>
+                        <segue destination="vKi-3g-ojA" kind="show" identifier="TimeTableSegue" id="FIP-7o-DDr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fby-Vp-tEA" userLabel="First Responder" sceneMemberID="firstResponder"/>

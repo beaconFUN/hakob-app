@@ -11,7 +11,7 @@ import Foundation
 
 class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var destination = ["函館駅", "五稜郭", "亀田支所", "はこだて未来大学"]
-    var busStop = ["函館駅前5番のりば", "五稜郭", "富岡", "亀田支所前", "はこだて未来大学"]
+    var busStop: [String]? = []
 /*
     var stopTime = ["8:03", "8:09", "8:40", "9:14", "9:28", "10:11", "10:16", "10:34", "11:04", "11:11", "11:49", "12:12", "13:12", "13:20", "13:45", "14:58", "15:27", "16:10", "17:09", "17:34", "18:21", "18:54", "19:28", "20:35"]
  */
@@ -41,8 +41,8 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         let cal_comp: DateComponents = cal.dateComponents([.hour, .minute], from:now)
         
         destinationLabel.text = "目的地：" + destination[0]
-        getOnBusStop.text = busStop[0]
-        getOffBusStop.text = busStop[4]
+        getOnBusStop.text = busStop?[0]
+        getOffBusStop.text = busStop?[1]
         titleBusStop.accessibilityLabel = getOnBusStop.text
         getOnBusStop2.text = getOnBusStop.text!
         /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -66,6 +66,7 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         // セルの数を設定
+        cellNum = 0
         for i in 0 ..< delayTime.count {
             if delayTime[i] < 0 {
                 cellNum += 1
