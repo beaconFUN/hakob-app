@@ -193,6 +193,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             //乗車地
             self.getOn = (view.annotation?.title)!
             print(view.annotation?.title)
+            print(self.getOn!)
 
             
 //            for i in 0..<self.name.count {
@@ -207,7 +208,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             //降車地
             self.getOff = (view.annotation?.title)!
             print(view.annotation?.title)
-
+            print(self.getOff!)
         })
         
         let action3 = UIAlertAction(title: "バス停を決定する", style: UIAlertActionStyle.destructive, handler: {
@@ -235,8 +236,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     
     //値渡し
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let TableVC = segue.destination as! TableViewController
-        
+        let TableVC = segue.destination as! getOnBusTimeTable
+        TableVC.busStop?.append(getOn!)
+        TableVC.busStop?.append(getOff!)
         
         
     }
