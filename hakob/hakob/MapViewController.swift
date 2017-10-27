@@ -40,9 +40,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     var myLocationManager:CLLocationManager!
     var busAnnotations: [MKAnnotation]! = []
     
+    var logoImageView: UIImageView!
+    var maskView: UIView!
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
         
+        //imageView作成
+        self.logoImageView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        self.maskView = UIView(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        self.maskView.backgroundColor = UIColor.white
+        //画面centerに
+        self.logoImageView.center = self.view.center
+        //logo設定
+        self.logoImageView.contentMode = UIViewContentMode.scaleAspectFit
+        self.logoImageView.image = UIImage(named: "launch")
+        //viewに追加
+        self.view.addSubview(self.maskView)
+        self.maskView.addSubview(self.logoImageView)
 //        //バス停表示(下り)
 //        for i in 0..<11 {
 //            let coordinate = CLLocationCoordinate2D(latitude: latdown[i] ,longitude: londown[i])
@@ -113,6 +128,30 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //少し縮小するアニメーション
+        UIView.animate(withDuration: 0.3,
+                       delay: 1.0,
+                       options: UIViewAnimationOptions.curveEaseOut,
+                       animations: { () in
+                        self.logoImageView.transform = self.logoImageView.transform.scaledBy(x: 1.0, y: 1.0)
+        }, completion: { (Bool) in
+            
+        })
+        
+        //拡大させて、消えるアニメーション
+        UIView.animate(withDuration: 0.2,
+                       delay: 1.3,
+                       options: UIViewAnimationOptions.curveEaseOut,
+                       animations: { () in
+                        self.logoImageView.transform = self.logoImageView.transform.scaledBy(x: 5.5, y: 5.5)
+                        self.logoImageView.alpha = 0
+        }, completion: { (Bool) in
+            self.maskView.removeFromSuperview()
+        })
     }
     
     
