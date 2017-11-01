@@ -150,9 +150,9 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         }
 
         /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━あと何分で到着するか━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-        delayTime = [Int](repeating: 0, count: stopTimeKameda105Nobori.count)
-        for i in 0 ..< stopTimeKameda105Nobori.count {
-        delayTime[i] = stopTimeKameda105Nobori[i] - (cal_comp.hour!*60 + cal_comp.minute!)
+        delayTime = [Int](repeating: 0, count: busStopsTimeN.count)
+        for i in 0 ..< busStopsTimeN.count {
+        delayTime[i] = busStopsTimeN[i] - (cal_comp.hour!*60 + cal_comp.minute!)
         }
 
         /* ━━━━━━━━━━━━━━━━━━━━━━━現在時刻以前に来るバスの数を数える━━━━━━━━━━━━━━━━━━━━━━ */
