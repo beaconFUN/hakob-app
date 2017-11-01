@@ -214,12 +214,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             self.getOnBusStop.text = self.getOn
             print(view.annotation?.title)
             print(self.getOn!)
-
             
-//            for i in 0..<self.name.count {
-//                //latは緯度、lonは経度
-//                sqrt(pow(self.Annotation.coordinate.latitude - self.latdown[i], 2.0) * (pow(self.Annotation.coordinate.longitude - self.latup[i], 2.0)))
-//            }
+            if self.getOff != nil {
+                self.OKButton.isHidden = false
+            }
+            
         })
         
         let action2 = UIAlertAction(title: "降車地", style: UIAlertActionStyle.default, handler: {
@@ -230,6 +229,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             self.getOffBusStop.text = self.getOff
             print(view.annotation?.title)
             print(self.getOff!)
+            
+            if self.getOn != nil {
+                self.OKButton.isHidden = false
+            }
         })
         
         let cancel = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: {
