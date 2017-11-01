@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6122FFDA1FA30BE2009DDE48 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 6122FFD91FA30BE2009DDE48 /* launch.png */; };
 		61DB75CA1F8760B800C94AD1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DB75C91F8760B800C94AD1 /* MapViewController.swift */; };
 		61DB75CD1F87627C00C94AD1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DB75CC1F87627C00C94AD1 /* MapKit.framework */; };
 		61DB75CF1F8769D600C94AD1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61DB75CE1F8769D600C94AD1 /* CoreLocation.framework */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6122FFD91FA30BE2009DDE48 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		61DB75C91F8760B800C94AD1 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		61DB75CC1F87627C00C94AD1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		61DB75CE1F8769D600C94AD1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -100,6 +102,7 @@
 				A9A4685A1F87739D00DBB55F /* getOnBusTimeTable.swift */,
 				61DB75C91F8760B800C94AD1 /* MapViewController.swift */,
 				74501A5B1F87575D0047EA2B /* busstop.storyboard */,
+				6122FFD91FA30BE2009DDE48 /* launch.png */,
 				74095F991F84B996005FFED6 /* Assets.xcassets */,
 				74095F9B1F84B996005FFED6 /* LaunchScreen.storyboard */,
 				6873595E1F99DC7100C10981 /* CustomAnnotation.swift */,
@@ -177,6 +180,7 @@
 				74095F9D1F84B996005FFED6 /* LaunchScreen.storyboard in Resources */,
 				74501A5C1F87575D0047EA2B /* busstop.storyboard in Resources */,
 				74095F9A1F84B996005FFED6 /* Assets.xcassets in Resources */,
+				6122FFDA1FA30BE2009DDE48 /* launch.png in Resources */,
 				74095F951F84B996005FFED6 /* Main.storyboard in Resources */,
 				74501A5A1F87574F0047EA2B /* map.storyboard in Resources */,
 			);
@@ -330,6 +334,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sattotto.hakob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -344,6 +349,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sattotto.hakob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
