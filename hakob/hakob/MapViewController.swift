@@ -13,8 +13,11 @@ import CoreLocation
 class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBarDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-    
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var getOnBusStop: UILabel!
+    @IBOutlet weak var getOffBusStop: UILabel!
+    @IBOutlet weak var OKButton: UIButton!
+    
     //検索結果を入れる
     var nameResult = [""]
     //選択された乗車地と降車地を入れる
@@ -82,19 +85,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             self.busAnnotations.append(Annotation)
         }
         
-//        //バス停表示(上り)
-//        for i in 0..<11 {
-//            let coordinate = CLLocationCoordinate2D(latitude: latup[i] ,longitude: lonup[i])
-//            let span = MKCoordinateSpanMake(0.001, 0.001)
-//            let region = MKCoordinateRegionMake(coordinate, span)
-//            self.mapView.setRegion(region, animated:true)
-//            let annotation = MKPointAnnotation()
-//            annotation.coordinate = CLLocationCoordinate2DMake(latup[i],lonup[i])
-//            annotation.title = name[i]
-//            annotation.subtitle = "55系統"
-//            self.busAnnotations.append(annotation)
-//        }
-        
         for i in 0..<11 {
             let Annotation = CustomAnnotation()
             Annotation.coordinate = CLLocationCoordinate2DMake(latup[i], lonup[i])
@@ -125,7 +115,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         //何も入力されていなくてもReturnキーを押せるようにする。
         searchBar.enablesReturnKeyAutomatically = false
         
-        
+        self.OKButton.isHidden = true
         
         // Do any additional setup after loading the view.
     }
@@ -177,17 +167,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
                 
             } else if (name[i].contains(searchBar.text!)) {
                 nameResult.append(name[i])
-                
-                
-//                let coordinate = CLLocationCoordinate2D(latitude: (latup[i]+latdown[i])/2 ,longitude: (lonup[i]+londown[i])/2)
-//                let span = MKCoordinateSpanMake(0.001, 0.001)
-//                let region = MKCoordinateRegionMake(coordinate, span)
-//                self.mapView.setRegion(region, animated:true)
-//                let annotation = MKPointAnnotation()
-//                annotation.coordinate = CLLocationCoordinate2DMake((latup[i]+latdown[i])/2,(lonup[i]+londown[i])/2)
-//                annotation.title = name[i]
-//                annotation.subtitle = "おおよその位置"
-                
+
                 let Annotation = CustomAnnotation()
                 Annotation.coordinate = CLLocationCoordinate2DMake((latup[i]+latdown[i])/2, (lonup[i]+londown[i])/2)
                 Annotation.title = name[i]
@@ -224,13 +204,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     
     //ボタンをタップした時の処理
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        let actionSheet = UIAlertController(title: "タイトル", message: "メッセージ", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let actionSheet = UIAlertController(title: "タイトル", message: "設定したい方を選択してください", preferredStyle: UIAlertControllerStyle.actionSheet)
         
         let action1 = UIAlertAction(title: "乗車地", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
             print("アクション１をタップした時の処理")
             //乗車地
             self.getOn = (view.annotation?.title)!
+            self.getOnBusStop.text = self.getOn
             print(view.annotation?.title)
             print(self.getOn!)
 
@@ -246,18 +227,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             print("アクション２をタップした時の処理")
             //降車地
             self.getOff = (view.annotation?.title)!
+            self.getOffBusStop.text = self.getOff
             print(view.annotation?.title)
             print(self.getOff!)
-        })
-        
-        let action3 = UIAlertAction(title: "バス停を決定する", style: UIAlertActionStyle.destructive, handler: {
-            (action: UIAlertAction!) in
-            print("アクション３をタップした時の処理")
-            //乗車地と降車地が設定されていたら次の画面へ遷移
-            if(self.getOn != nil && self.getOff != nil){
-                self.performSegue(withIdentifier: "TimeTableSegue", sender: nil)
-
-            }
         })
         
         let cancel = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler: {
@@ -267,7 +239,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         
         actionSheet.addAction(action1)
         actionSheet.addAction(action2)
-        actionSheet.addAction(action3)
+//        actionSheet.addAction(action3)
         actionSheet.addAction(cancel)
         
         self.present(actionSheet, animated: true, completion: nil)
@@ -280,6 +252,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         TableVC.busStop?.append(getOff!)
         
         
+    }
+
+    @IBAction func nextVC(_ sender: Any) {
+        if(self.getOn != nil && self.getOff != nil){
+            self.performSegue(withIdentifier: "TimeTableSegue", sender: nil)
+        } else {
+            //なんか中央に注意書き的なの表示予定
+        }
+
     }
 
     
