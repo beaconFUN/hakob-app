@@ -187,28 +187,18 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         // セルを作る
         let cell: UITableViewCell =
             tableView.dequeueReusableCell(withIdentifier: "delayTime", for: indexPath)
-//        /* ---- 上り ---- */
-//        // Tagが1の部品にアクセス
-//        cellLabel1 = cell.viewWithTag(1) as! UILabel
-//        cellLabel1.text = String((busStopsTimeN?[indexPath.row])!/60) + ":" + String(format: "%02d", (busStopsTimeN?[indexPath.row])!%60)
-//        
-//        // Tagが2の部品にアクセス
-//        cellLabel2 = cell.viewWithTag(2) as! UILabel
-//        cellLabel2.text = "あと\((delayTime?[indexPath.row])!)分で到着"
         
-        /* ---- 下り ---- */
-        // Tagが1の部品にアクセス
-        
-        cellLabel1 = cell.viewWithTag(1) as! UILabel
-        print(indexPath.row)
-        print(busStopsTimeK?[indexPath.row])
-        cellLabel1.text = String((busStopsTimeK?[indexPath.row])!/60) + ":" + String(format: "%02d", (busStopsTimeK?[indexPath.row])!%60)
-        
-        // Tagが2の部品にアクセス
-        cellLabel2 = cell.viewWithTag(2) as! UILabel
-        cellLabel2.text = "あと\((delayTime?[indexPath.row])!)分で到着"
+        SetCellItem(indexPath: indexPath, cell: cell, busStop: busStopsTimeK!, delay: delayTime!)
         
         return cell
+    }
+    
+    private func SetCellItem(indexPath: IndexPath, cell: UITableViewCell, busStop: [Int], delay: [Int]){
+        cellLabel1 = cell.viewWithTag(1) as! UILabel
+        cellLabel1.text = "\(busStop[indexPath.row]/60):\(String(format: "%02d", busStop[indexPath.row]%60))"
+        
+        cellLabel2 = cell.viewWithTag(2) as! UILabel
+        cellLabel2.text = "あと\(delay[indexPath.row])分で到着"
     }
     
     /// セルが選択された時に呼ばれるデリゲートメソッド
