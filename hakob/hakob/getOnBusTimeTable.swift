@@ -21,8 +21,6 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
     var cellNum = 0 // 現在時刻以前に来るバスの数
     var num = 0
     
-    
-    @IBOutlet weak var titleBusStop: UINavigationBar!
     @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var getOnBusStop: UILabel!
     @IBOutlet weak var getOffBusStop: UILabel!
@@ -45,7 +43,6 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         destinationLabel.text = "目的地：" + busStop[4]
         getOnBusStop.text = busStop[0]
         getOffBusStop.text = busStop[10]
-        titleBusStop.accessibilityLabel = getOnBusStop.text
         getOnBusStop2.text = getOnBusStop.text!
         
         /* ━━━━━━━━━━━━━━━━━━━━━━━━━━亀田支所以降のバス停の時刻表━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -182,12 +179,12 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
                    numberOfRowsInSection section: Int) -> Int {
         // セルの数を設定
         cellNum = 0
-        for i in 0 ..< delayTime.count {
-            if delayTime[i] < 0 {
+        for i in 0 ..< delayTime!.count {
+            if delayTime![i] < 0 {
                 cellNum += 1
             }
         }
-        return stopTime.count-cellNum
+        return busStopsTime!.count-cellNum
     }
     
     // セルに値を設定するデータメソッド(必須)
@@ -243,7 +240,7 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         var BusLine = segue.destination as! busLine
-        BusLine.busStops105 = busStop!
+        BusLine.busStops105 = busStop
     }
     
 }
