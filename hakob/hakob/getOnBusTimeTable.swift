@@ -154,13 +154,13 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         
         /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━あと何分で到着するか━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-        for i in 0 ..< (busStopsTimeN?.count)! {
+        for i in 0 ..< 24 {
             delayTime?.append(((busStopsTimeN?[i])!) - (cal_comp.hour!*60 + cal_comp.minute!))
         }
         
         /* ━━━━━━━━━━━━━━━━━━━━━━━現在時刻以前に来るバスの数を数える━━━━━━━━━━━━━━━━━━━━━━ */
         // num = cal_comp.hour!
-        for i in 0 ..< (delayTime?.count)! {
+        for i in 0 ..< 23 {
             if (delayTime?[i])! < 0 {
                 cellNum += 1
             }
@@ -206,6 +206,25 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         print("セル番号：¥(indexPath.row)　セルの内容：¥(stopTimeKameda105Nobori[indexPath.row])")
         performSegue(withIdentifier: "toBusLine", sender: indexPath.row)
         tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: true)
+    }
+    
+    // MARK: 未来大へ向かうバスか下るバスか判定
+    // true 未来大方面 : false 亀田支所方面
+    private func busLineChk(geton: String, getoff: String) -> Bool {
+        var stop1: Int
+        var stop2: Int
+        
+        if (busStop.index(of: geton) != nil) && (busStop.index(of: getoff) != nil) {
+            stop1 = busStop.index(of: geton)!
+            stop2 = busStop.index(of: getoff)!
+            
+            if stop1 > stop2 {
+                return true
+            }
+        }
+        
+        
+        return false;
     }
     
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
