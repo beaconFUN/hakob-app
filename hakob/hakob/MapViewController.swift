@@ -251,10 +251,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     //値渡し
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let TableVC = segue.destination as! getOnBusTimeTable
-//        TableVC.busStop.append(getOn!)
-//        TableVC.busStop.append(getOff!)
         
-        
+        TableVC.getOn = getOn
+        TableVC.getOff = getOff
     }
 
     @IBAction func nextVC(_ sender: Any) {

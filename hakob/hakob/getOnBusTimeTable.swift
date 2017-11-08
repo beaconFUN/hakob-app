@@ -15,6 +15,9 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
     let stopTimeKameda105Nobori = [8*60+3, 8*60+9, 8*60+40, 9*60+14, 9*60+28, 10*60+11, 10*60+16, 10*60+34, 11*60+4, 11*60+11, 11*60+49, 12*60+12, 13*60+12, 13*60+20, 13*60+45, 14*60+58, 15*60+27, 16*60+10, 17*60+9, 17*60+34, 18*60+21, 18*60+54, 19*60+28, 20*60+35] // 亀田支所の105系統上りの時刻表
     let stopTimeKameda105Kudari = [8*60+15, 8*60+21, 8*60+52, 9*60+26, 9*60+40, 10*60+23, 10*60+28, 10*60+46, 11*60+16, 11*60+23, 12*60+1, 13*60+24, 13*60+24, 13*60+32, 13*60+57, 15*60+10, 15*60+39, 16*60+22, 17*60+21, 18*60+46, 19*60+19, 19*60+53, 20*60+12, 20*60+55] // 亀田支所の105系統下りの時刻表
 
+    var getOn: String?
+    var getOff: String?
+    
     var busStopsTime: [Int]? = []
     let timeFromKameda = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12] // 亀田支所からそれ以降の各バス停までかかる時間 [気象台, 赤川通, 赤川1丁目, 赤川入口, 低区貯水池, 浄水場下, 赤川小学校, 赤川3区, 赤川貯水池, はこだて未来大学]
     var delayTime: [Int]? = []
@@ -40,9 +43,9 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         let cal_comp: DateComponents = cal.dateComponents([.hour, .minute], from:now)
         
         /* ━━━━━━━━━━━━━━━━━━━━━━━━━目的地、乗車地、降車地を設定━━━━━━━━━━━━━━━━━━━━━━━━━ */
-        destinationLabel.text = "目的地：" + busStop[4]
-        getOnBusStop.text = busStop[0]
-        getOffBusStop.text = busStop[10]
+        destinationLabel.text = "目的地：" + getOff!
+        getOnBusStop.text = getOn
+        getOffBusStop.text = getOff
         getOnBusStop2.text = getOnBusStop.text!
         
         /* ━━━━━━━━━━━━━━━━━━━━━━━━━━亀田支所以降のバス停の時刻表━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -223,7 +226,7 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
             stop1 = busStop.index(of: geton)!
             stop2 = busStop.index(of: getoff)!
             
-            if stop1 > stop2 {
+            if stop1 < stop2 {
                 return true
             }
         }
