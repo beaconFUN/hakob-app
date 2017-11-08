@@ -10,13 +10,12 @@ import UIKit
 import Foundation
 
 class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var destination = ["函館駅", "五稜郭", "亀田支所", "はこだて未来大学"]
     var busStop = ["亀田支所前(1)至赤川", "函館地方気象台前", "赤川通", "赤川1丁目ライフプレステージ白ゆり美原前", "赤川入口", "低区貯水池", "浄水場下", "赤川小学校", "赤川3区", "赤川貯水池", "はこだて未来大学"]
 
     let stopTimeKameda105Nobori = [8*60+3, 8*60+9, 8*60+40, 9*60+14, 9*60+28, 10*60+11, 10*60+16, 10*60+34, 11*60+4, 11*60+11, 11*60+49, 12*60+12, 13*60+12, 13*60+20, 13*60+45, 14*60+58, 15*60+27, 16*60+10, 17*60+9, 17*60+34, 18*60+21, 18*60+54, 19*60+28, 20*60+35] // 亀田支所の105系統上りの時刻表
     let stopTimeKameda105Kudari = [8*60+15, 8*60+21, 8*60+52, 9*60+26, 9*60+40, 10*60+23, 10*60+28, 10*60+46, 11*60+16, 11*60+23, 12*60+1, 13*60+24, 13*60+24, 13*60+32, 13*60+57, 15*60+10, 15*60+39, 16*60+22, 17*60+21, 18*60+46, 19*60+19, 19*60+53, 20*60+12, 20*60+55] // 亀田支所の105系統下りの時刻表
-    var busStopsTimeN: [Int]? = []
-    var busStopsTimeK: [Int]? = []
+
+    var busStopsTime: [Int]? = []
     let timeFromKameda = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12] // 亀田支所からそれ以降の各バス停までかかる時間 [気象台, 赤川通, 赤川1丁目, 赤川入口, 低区貯水池, 浄水場下, 赤川小学校, 赤川3区, 赤川貯水池, はこだて未来大学]
     var delayTime: [Int]? = []
     var cellNum = 0 // 現在時刻以前に来るバスの数
@@ -44,118 +43,121 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         
         /* ━━━━━━━━━━━━━━━━━━━━━━━━━目的地、乗車地、降車地を設定━━━━━━━━━━━━━━━━━━━━━━━━━ */
         destinationLabel.text = "目的地：" + busStop[4]
-        getOnBusStop.text = busStop[10]
-        getOffBusStop.text = busStop[0]
+        getOnBusStop.text = busStop[0]
+        getOffBusStop.text = busStop[10]
         titleBusStop.accessibilityLabel = getOnBusStop.text
         getOnBusStop2.text = getOnBusStop.text!
         
         /* ━━━━━━━━━━━━━━━━━━━━━━━━━━亀田支所以降のバス停の時刻表━━━━━━━━━━━━━━━━━━━━━━━━━ */
-        // 上り
-        switch getOnBusStop.text! {
-        case busStop[0]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeN?.append(stopTimeKameda105Nobori[i] + timeFromKameda[0])
+        if busLineChk(geton: getOnBusStop.text!, getoff: getOffBusStop.text!) {
+            // 上り
+            switch getOnBusStop.text! {
+            case busStop[0]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Nobori[i] + timeFromKameda[0])
+                }
+            case busStop[1]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Nobori[i] + timeFromKameda[1])
+                }
+            case busStop[2]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Nobori[i] + timeFromKameda[2])
+                }
+            case busStop[3]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Nobori[i] + timeFromKameda[3])
+                }
+            case busStop[4]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Nobori[i] + timeFromKameda[4])
+                }
+            case busStop[5]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Nobori[i] + timeFromKameda[5])
+                }
+            case busStop[6]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Nobori[i] + timeFromKameda[6])
+                }
+            case busStop[7]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Nobori[i] + timeFromKameda[7])
+                }
+            case busStop[8]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Nobori[i] + timeFromKameda[8])
+                }
+            case busStop[9]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Nobori[i] + timeFromKameda[9])
+                }
+            case busStop[10]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Nobori[i] + timeFromKameda[10])
+                }
+            default:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Nobori[i])
+                }
             }
-        case busStop[1]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeN?.append(stopTimeKameda105Nobori[i] + timeFromKameda[1])
-            }
-        case busStop[2]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeN?.append(stopTimeKameda105Nobori[i] + timeFromKameda[2])
-            }
-        case busStop[3]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeN?.append(stopTimeKameda105Nobori[i] + timeFromKameda[3])
-            }
-        case busStop[4]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeN?.append(stopTimeKameda105Nobori[i] + timeFromKameda[4])
-            }
-        case busStop[5]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeN?.append(stopTimeKameda105Nobori[i] + timeFromKameda[5])
-            }
-        case busStop[6]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeN?.append(stopTimeKameda105Nobori[i] + timeFromKameda[6])
-            }
-        case busStop[7]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeN?.append(stopTimeKameda105Nobori[i] + timeFromKameda[7])
-            }
-        case busStop[8]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeN?.append(stopTimeKameda105Nobori[i] + timeFromKameda[8])
-            }
-        case busStop[9]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeN?.append(stopTimeKameda105Nobori[i] + timeFromKameda[9])
-            }
-        case busStop[10]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeN?.append(stopTimeKameda105Nobori[i] + timeFromKameda[10])
-            }
-        default:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeK?.append(stopTimeKameda105Nobori[i])
-            }
-        }
-        // 下り
-        switch getOnBusStop.text! {
-        case busStop[0]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeK?.append(stopTimeKameda105Kudari[i]+timeFromKameda[10])
-            }
-        case busStop[1]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeK?.append(stopTimeKameda105Kudari[i]+timeFromKameda[9])
-            }
-        case busStop[2]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeK?.append(stopTimeKameda105Kudari[i]+timeFromKameda[8])
-            }
-        case busStop[3]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeK?.append(stopTimeKameda105Kudari[i]+timeFromKameda[7])
-            }
-        case busStop[4]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeK?.append(stopTimeKameda105Kudari[i]+timeFromKameda[6])
-            }
-        case busStop[5]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeK?.append(stopTimeKameda105Kudari[i]+timeFromKameda[5])
-            }
-        case busStop[6]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeK?.append(stopTimeKameda105Kudari[i]+timeFromKameda[4])
-            }
-        case busStop[7]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeK?.append(stopTimeKameda105Kudari[i]+timeFromKameda[3])
-            }
-        case busStop[8]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeK?.append(stopTimeKameda105Kudari[i]+timeFromKameda[2])
-            }
-        case busStop[9]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeK?.append(stopTimeKameda105Kudari[i]+timeFromKameda[1])
-            }
-        case busStop[10]:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeK?.append(stopTimeKameda105Kudari[i]+timeFromKameda[0])
-            }
-        default:
-            for i in 0 ..< stopTimeKameda105Nobori.count {
-                busStopsTimeK?.append(stopTimeKameda105Kudari[i])
+        } else {
+            // 下り
+            switch getOnBusStop.text! {
+            case busStop[0]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[10])
+                }
+            case busStop[1]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[9])
+                }
+            case busStop[2]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[8])
+                }
+            case busStop[3]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[7])
+                }
+            case busStop[4]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[6])
+                }
+            case busStop[5]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[5])
+                }
+            case busStop[6]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[4])
+                }
+            case busStop[7]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[3])
+                }
+            case busStop[8]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[2])
+                }
+            case busStop[9]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[1])
+                }
+            case busStop[10]:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[0])
+                }
+            default:
+                for i in 0 ..< stopTimeKameda105Nobori.count {
+                    busStopsTime?.append(stopTimeKameda105Kudari[i])
+                }
             }
         }
         
         /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━あと何分で到着するか━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
         for i in 0 ..< 24 {
-            delayTime?.append(((busStopsTimeN?[i])!) - (cal_comp.hour!*60 + cal_comp.minute!))
+            delayTime?.append(((busStopsTime?[i])!) - (cal_comp.hour!*60 + cal_comp.minute!))
         }
         
         /* ━━━━━━━━━━━━━━━━━━━━━━━現在時刻以前に来るバスの数を数える━━━━━━━━━━━━━━━━━━━━━━ */
@@ -188,7 +190,7 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         let cell: UITableViewCell =
             tableView.dequeueReusableCell(withIdentifier: "delayTime", for: indexPath)
         
-        SetCellItem(indexPath: indexPath, cell: cell, busStop: busStopsTimeK!, delay: delayTime!)
+        SetCellItem(indexPath: indexPath, cell: cell, busStop: busStopsTime!, delay: delayTime!)
         
         return cell
     }
