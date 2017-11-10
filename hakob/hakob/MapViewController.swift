@@ -61,18 +61,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         //viewに追加
         self.view.addSubview(self.maskView)
         self.maskView.addSubview(self.logoImageView)
-//        //バス停表示(下り)
-//        for i in 0..<11 {
-//            let coordinate = CLLocationCoordinate2D(latitude: latdown[i] ,longitude: londown[i])
-//            let span = MKCoordinateSpanMake(0.001, 0.001)
-//            let region = MKCoordinateRegionMake(coordinate, span)
-//            let annotation = MKPointAnnotation()
-//            annotation.coordinate = CLLocationCoordinate2DMake(latdown[i],londown[i])
-//            annotation.title = name[i]
-//            annotation.subtitle = "105系統（未来大経由)"
-//            self.busAnnotations.append(annotation)
-//            
-//        }
         
         for i in 0..<11 {
             let Annotation = CustomAnnotation()
@@ -242,7 +230,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         
         actionSheet.addAction(action1)
         actionSheet.addAction(action2)
-//        actionSheet.addAction(action3)
         actionSheet.addAction(cancel)
         
         self.present(actionSheet, animated: true, completion: nil)

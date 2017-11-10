@@ -282,8 +282,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="aaa" destination="zg9-a4-jBn" id="3tZ-PN-Rc2"/>
                         <outlet property="busLine" destination="SeS-N3-gif" id="ZjO-Vc-aiC"/>
+                        <outlet property="busStopMap" destination="zg9-a4-jBn" id="Djz-jh-sLu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ch1-BD-SAJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
