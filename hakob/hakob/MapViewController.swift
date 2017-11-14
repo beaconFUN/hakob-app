@@ -19,7 +19,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     @IBOutlet weak var OKButton: UIButton!
     
     var myLocationManager:CLLocationManager!
-    
+    var destLocation: MKPointAnnotation!
+
     //検索結果を入れる
     var nameResult = [""]
     //選択された乗車地と降車地を入れる
@@ -72,17 +73,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         self.maskView.addSubview(self.logoImageView)
         
         for i in 0..<11 {
-            let Annotation = CustomAnnotation()
+            let Annotation = MKPointAnnotation()
             Annotation.coordinate = CLLocationCoordinate2DMake((latdown[i]+latup[i])/2, (londown[i]+lonup[i])/2)
             Annotation.title = name[i]
-            
-            Annotation.busstopName = name[i]
             
             self.busAnnotations.append(Annotation)
         }
         
         self.mapView.addAnnotations(busAnnotations)
-        
         
         
         //位置情報使用許可のリクエストを表示するメソッドの呼び出し
@@ -196,6 +194,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             //乗車地
             self.getOn = (view.annotation?.title)!
             self.getOnBusStop.text = self.getOn
+            self.destLocation = view.annotation as! MKPointAnnotation
             print(view.annotation?.title)
             print(self.getOn!)
             
@@ -237,6 +236,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         
         TableVC.getOn = getOn
         TableVC.getOff = getOff
+        TableVC.destLocation = self.destLocation
     }
 
     @IBAction func nextVC(_ sender: Any) {

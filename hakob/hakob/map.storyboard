@@ -265,7 +265,7 @@
                                     <outlet property="delegate" destination="89f-gk-L4m" id="SYz-VR-XVO"/>
                                 </connections>
                             </tableView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zg9-a4-jBn">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zg9-a4-jBn">
                                 <rect key="frame" x="0.0" y="64" width="375" height="333.5"/>
                             </mapView>
                         </subviews>

@@ -19,8 +19,8 @@ class busLine: UIViewController, UITableViewDelegate, UITableViewDataSource, CLL
     
     var locationManager: CLLocationManager!
     var userLocation: CLLocationCoordinate2D!
-    var destLocation: CLLocationCoordinate2D!
-
+    var destLocation: MKPointAnnotation!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,6 +42,13 @@ class busLine: UIViewController, UITableViewDelegate, UITableViewDataSource, CLL
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         //位置情報取得間隔(m)
         locationManager.distanceFilter = 300
+        locationManager.startUpdatingLocation()
+        busStopMap.setCenter(busStopMap.userLocation.coordinate, animated: true)
+        busStopMap.userTrackingMode = MKUserTrackingMode.follow
+        userLocation = busStopMap.userLocation.coordinate
+        
+        busStopMap.addAnnotation(destLocation)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,32 +79,32 @@ class busLine: UIViewController, UITableViewDelegate, UITableViewDataSource, CLL
     }
 
     // 位置情報取得に成功したときに呼び出されるデリゲート.
-    func locationManager(manager: CLLocationManager!,didUpdateLocations locations: [AnyObject]!){
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         userLocation = CLLocationCoordinate2DMake((manager.location?.coordinate.latitude)!, (manager.location?.coordinate.longitude)!)
         
-        var userLocAnnotation: MKPointAnnotation = MKPointAnnotation()
+        let userLocAnnotation: MKPointAnnotation = MKPointAnnotation()
         userLocAnnotation.coordinate = userLocation
         userLocAnnotation.title = "現在地"
-        busStopMap.addAnnotation(userLocAnnotation)
+        //busStopMap.addAnnotation(userLocAnnotation)
         // 現在地から目的地家の経路を検索
         getRoute()
     }
     
     // 位置情報取得に失敗した時に呼び出されるデリゲート.
-    func locationManager(manager: CLLocationManager!,didFailWithError error: NSError!){
+    func locationManager(_ manager: CLLocationManager,didFailWithError error: Error){
         print("locationManager error")
     }
     
     func getRoute()
     {
         // 現在地と目的地のMKPlacemarkを生成
-        var fromPlacemark = MKPlacemark(coordinate:userLocation, addressDictionary:nil)
-        var toPlacemark   = MKPlacemark(coordinate:destLocation, addressDictionary:nil)
+        let fromPlacemark = MKPlacemark(coordinate:userLocation, addressDictionary:nil)
+        let toPlacemark   = MKPlacemark(coordinate:destLocation.coordinate, addressDictionary:nil)
         
         // MKPlacemark から MKMapItem を生成
-        var fromItem = MKMapItem(placemark:fromPlacemark)
-        var toItem   = MKMapItem(placemark:toPlacemark)
+        let fromItem = MKMapItem(placemark:fromPlacemark)
+        let toItem   = MKMapItem(placemark:toPlacemark)
         
         // MKMapItem をセットして MKDirectionsRequest を生成
         let request = MKDirectionsRequest()
@@ -105,34 +112,36 @@ class busLine: UIViewController, UITableViewDelegate, UITableViewDataSource, CLL
         request.source = fromItem
         request.destination = toItem
         
-        request.requestsAlternateRoutes = false // 単独の経路を検索
-        request.transportType = MKDirectionsTransportType.any
+        request.requestsAlternateRoutes = true // 単独の経路を検索
+        request.transportType = MKDirectionsTransportType.walking
         
-        let directions = MKDirections(request:request)
-        directions.calculate(completionHandler: {
-            (response:MKDirectionsResponse!, error:NSError!) -> Void in
+        let myDirections: MKDirections = MKDirections(request: request)
+        myDirections.calculate { (response, error) in
             
-            response.routes.count
-            if (error != nil || response.routes.isEmpty) {
+            // NSErrorを受け取ったか、ルートがない場合.
+            if error != nil || response!.routes.isEmpty {
+                print(error)
                 return
             }
-            var route: MKRoute = response.routes[0] as MKRoute
-            // 経路を描画
-            self.busStopMap.add(route.polyline)
             
-            // 現在地と目的地を含む表示範囲を設定する
-            self.showUserAndDestinationOnMap()
-        } as! MKDirectionsHandler)
+            let route: MKRoute = response!.routes[0] as MKRoute
+            print("目的地まで \(route.distance)km")
+            print("所要時間 \(Int(route.expectedTravelTime/60))分")
+            
+            // mapViewにルートを描画.
+            self.busStopMap.add(route.polyline)
+        }
+
     }
     
     // 地図の表示範囲を計算
     func showUserAndDestinationOnMap()
     {
         // 現在地と目的地を含む矩形を計算
-        let maxLat:Double = fmax(userLocation.latitude,  destLocation.latitude)
-        let maxLon:Double = fmax(userLocation.longitude, destLocation.longitude)
-        let minLat:Double = fmin(userLocation.latitude,  destLocation.latitude)
-        let minLon:Double = fmin(userLocation.longitude, destLocation.longitude)
+        let maxLat:Double = fmax(userLocation.latitude,  destLocation.coordinate.latitude)
+        let maxLon:Double = fmax(userLocation.longitude, destLocation.coordinate.longitude)
+        let minLat:Double = fmin(userLocation.latitude,  destLocation.coordinate.latitude)
+        let minLon:Double = fmin(userLocation.longitude, destLocation.coordinate.longitude)
         
         // 地図表示するときの緯度、経度の幅を計算
         let mapMargin:Double = 1.5;  // 経路が入る幅(1.0)＋余白(0.5)
@@ -148,15 +157,18 @@ class busLine: UIViewController, UITableViewDelegate, UITableViewDataSource, CLL
         busStopMap.setRegion(busStopMap.regionThatFits(region), animated:true);
     }
     
-    // 経路を描画するときの色や線の太さを指定
-    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
-        if overlay is MKPolyline {
-            var polylineRenderer = MKPolylineRenderer(overlay: overlay)
-            polylineRenderer.strokeColor = UIColor.blue
-            polylineRenderer.lineWidth = 5
-            return polylineRenderer
-        }
-        return nil
+    // ルートの表示設定.
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        let route: MKPolyline = overlay as! MKPolyline
+        let routeRenderer: MKPolylineRenderer = MKPolylineRenderer(polyline: route)
+        
+        // ルートの線の太さ.
+        routeRenderer.lineWidth = 3.0
+        
+        // ルートの線の色.
+        routeRenderer.strokeColor = UIColor.red
+        return routeRenderer
     }
 
     /*

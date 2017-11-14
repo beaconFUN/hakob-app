@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import MapKit
 
 class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var busStop = ["亀田支所前(1)至赤川", "函館地方気象台前", "赤川通", "赤川1丁目ライフプレステージ白ゆり美原前", "赤川入口", "低区貯水池", "浄水場下", "赤川小学校", "赤川3区", "赤川貯水池", "はこだて未来大学"]
@@ -32,6 +33,7 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var cellLabel1: UILabel!
     @IBOutlet weak var cellLabel2: UILabel!
     
+    var destLocation: MKPointAnnotation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -244,6 +246,7 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         // Pass the selected object to the new view controller.
         var BusLine = segue.destination as! busLine
         BusLine.busStops105 = busStop
+        BusLine.destLocation = self.destLocation
     }
     
 }
