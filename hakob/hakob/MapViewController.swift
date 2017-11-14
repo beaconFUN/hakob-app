@@ -18,6 +18,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     @IBOutlet weak var getOffBusStop: UILabel!
     @IBOutlet weak var OKButton: UIButton!
     
+    var myLocationManager:CLLocationManager!
+    var destLocation: MKPointAnnotation!
+
     //検索結果を入れる
     var nameResult = [""]
     //選択された乗車地と降車地を入れる
@@ -39,15 +42,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     var lonup =
         [140.7670879,140.7713833,140.7691788,140.767124,140.7646591,140.762869,140.7604518,140.7588972,140.7570886,140.7557357,140.7539141]
     
-    //CLLocationManagerの入れ物を用意
-    var myLocationManager:CLLocationManager!
+    
     var busAnnotations: [MKAnnotation]! = []
     
     var logoImageView: UIImageView!
     var maskView: UIView!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         self.view.backgroundColor = UIColor.white
+        
+        //CLLocationManagerをインスタンス化
+        myLocationManager = CLLocationManager()
+        myLocationManager.delegate = self
+        
+        mapView.delegate = self
         
         //imageView作成
         self.logoImageView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
@@ -61,45 +71,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         //viewに追加
         self.view.addSubview(self.maskView)
         self.maskView.addSubview(self.logoImageView)
-//        //バス停表示(下り)
-//        for i in 0..<11 {
-//            let coordinate = CLLocationCoordinate2D(latitude: latdown[i] ,longitude: londown[i])
-//            let span = MKCoordinateSpanMake(0.001, 0.001)
-//            let region = MKCoordinateRegionMake(coordinate, span)
-//            let annotation = MKPointAnnotation()
-//            annotation.coordinate = CLLocationCoordinate2DMake(latdown[i],londown[i])
-//            annotation.title = name[i]
-//            annotation.subtitle = "105系統（未来大経由)"
-//            self.busAnnotations.append(annotation)
-//            
-//        }
         
         for i in 0..<11 {
-            let Annotation = CustomAnnotation()
-            Annotation.coordinate = CLLocationCoordinate2DMake(latdown[i], londown[i])
+            let Annotation = MKPointAnnotation()
+            Annotation.coordinate = CLLocationCoordinate2DMake((latdown[i]+latup[i])/2, (londown[i]+lonup[i])/2)
             Annotation.title = name[i]
-            
-            Annotation.busstopName = name[i]
-            Annotation.subtitle = "105系統（未来大経由）"
-            
-            self.busAnnotations.append(Annotation)
-        }
-        
-        for i in 0..<11 {
-            let Annotation = CustomAnnotation()
-            Annotation.coordinate = CLLocationCoordinate2DMake(latup[i], lonup[i])
-            Annotation.title = name[i]
-            
-            Annotation.busstopName = name[i]
-            Annotation.subtitle = "55系統"
             
             self.busAnnotations.append(Annotation)
         }
         
         self.mapView.addAnnotations(busAnnotations)
         
-        //CLLocationManagerをインスタンス化
-        myLocationManager = CLLocationManager()
         
         //位置情報使用許可のリクエストを表示するメソッドの呼び出し
         myLocationManager.requestWhenInUseAuthorization()
@@ -212,6 +194,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             //乗車地
             self.getOn = (view.annotation?.title)!
             self.getOnBusStop.text = self.getOn
+            self.destLocation = view.annotation as! MKPointAnnotation
             print(view.annotation?.title)
             print(self.getOn!)
             
@@ -242,7 +225,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         
         actionSheet.addAction(action1)
         actionSheet.addAction(action2)
-//        actionSheet.addAction(action3)
         actionSheet.addAction(cancel)
         
         self.present(actionSheet, animated: true, completion: nil)
@@ -254,6 +236,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         
         TableVC.getOn = getOn
         TableVC.getOff = getOff
+        TableVC.destLocation = self.destLocation
     }
 
     @IBAction func nextVC(_ sender: Any) {

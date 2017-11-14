@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import MapKit
 
 class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var busStop = ["亀田支所前(1)至赤川", "函館地方気象台前", "赤川通", "赤川1丁目ライフプレステージ白ゆり美原前", "赤川入口", "低区貯水池", "浄水場下", "赤川小学校", "赤川3区", "赤川貯水池", "はこだて未来大学"]
@@ -32,6 +33,7 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var cellLabel1: UILabel!
     @IBOutlet weak var cellLabel2: UILabel!
     
+    var destLocation: MKPointAnnotation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -203,10 +205,10 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
     
     private func SetCellItem(indexPath: IndexPath, cell: UITableViewCell, busStop: [Int], delay: [Int]){
         cellLabel1 = cell.viewWithTag(1) as! UILabel
-        cellLabel1.text = "\(busStop[indexPath.row]/60):\(String(format: "%02d", busStop[indexPath.row]%60))"
+        cellLabel1.text = "\(busStop[indexPath.row+cellNum]/60):\(String(format: "%02d", busStop[indexPath.row+cellNum]%60))"
         
         cellLabel2 = cell.viewWithTag(2) as! UILabel
-        cellLabel2.text = "あと\(delay[indexPath.row])分で到着"
+        cellLabel2.text = "あと\(delay[indexPath.row+cellNum])分で到着"
     }
     
     /// セルが選択された時に呼ばれるデリゲートメソッド
@@ -244,6 +246,7 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         // Pass the selected object to the new view controller.
         var BusLine = segue.destination as! busLine
         BusLine.busStops105 = busStop
+        BusLine.destLocation = self.destLocation
     }
     
 }
