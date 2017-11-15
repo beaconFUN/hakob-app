@@ -208,7 +208,7 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         cellLabel1.text = "\(busStop[indexPath.row+cellNum]/60):\(String(format: "%02d", busStop[indexPath.row+cellNum]%60))"
         
         cellLabel2 = cell.viewWithTag(2) as! UILabel
-        cellLabel2.text = "あと\(delay[indexPath.row+cellNum])分で到着"
+        cellLabel2.text = "あと\(delay[indexPath.row+cellNum]/60)時間"+"\(delay[indexPath.row+cellNum]%60)分で到着"
     }
     
     /// セルが選択された時に呼ばれるデリゲートメソッド
