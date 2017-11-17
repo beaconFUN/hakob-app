@@ -19,6 +19,8 @@
 		74095F981F84B996005FFED6 /* hakob.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74095F961F84B996005FFED6 /* hakob.xcdatamodeld */; };
 		74095F9A1F84B996005FFED6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74095F991F84B996005FFED6 /* Assets.xcassets */; };
 		74095F9D1F84B996005FFED6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74095F9B1F84B996005FFED6 /* LaunchScreen.storyboard */; };
+		74120B571FBAD6DE0006DF78 /* BusStopBeaconList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74120B561FBAD6DE0006DF78 /* BusStopBeaconList.plist */; };
+		74120B591FBAD6F40006DF78 /* BusBeaconList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74120B581FBAD6F40006DF78 /* BusBeaconList.plist */; };
 		74501A5A1F87574F0047EA2B /* map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74501A591F87574F0047EA2B /* map.storyboard */; };
 		74925FE51F9DBAD9000D8FDD /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74925FE41F9DBAD9000D8FDD /* NotificationManager.swift */; };
 		A97CD40E1F8E03180009D92A /* busLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97CD40D1F8E03180009D92A /* busLine.swift */; };
@@ -40,6 +42,8 @@
 		74095F991F84B996005FFED6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74095F9C1F84B996005FFED6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74095F9E1F84B996005FFED6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74120B561FBAD6DE0006DF78 /* BusStopBeaconList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BusStopBeaconList.plist; sourceTree = "<group>"; };
+		74120B581FBAD6F40006DF78 /* BusBeaconList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BusBeaconList.plist; sourceTree = "<group>"; };
 		74501A591F87574F0047EA2B /* map.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = map.storyboard; sourceTree = "<group>"; };
 		74925FE41F9DBAD9000D8FDD /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		A97CD40D1F8E03180009D92A /* busLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = busLine.swift; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 				74925FE41F9DBAD9000D8FDD /* NotificationManager.swift */,
 				74095F9E1F84B996005FFED6 /* Info.plist */,
 				74095F961F84B996005FFED6 /* hakob.xcdatamodeld */,
+				74120B561FBAD6DE0006DF78 /* BusStopBeaconList.plist */,
+				74120B581FBAD6F40006DF78 /* BusBeaconList.plist */,
 			);
 			path = hakob;
 			sourceTree = "<group>";
@@ -172,10 +178,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74120B571FBAD6DE0006DF78 /* BusStopBeaconList.plist in Resources */,
 				74095F9D1F84B996005FFED6 /* LaunchScreen.storyboard in Resources */,
 				74095F9A1F84B996005FFED6 /* Assets.xcassets in Resources */,
 				6122FFDA1FA30BE2009DDE48 /* launch.png in Resources */,
 				74501A5A1F87574F0047EA2B /* map.storyboard in Resources */,
+				74120B591FBAD6F40006DF78 /* BusBeaconList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
