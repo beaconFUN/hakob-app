@@ -25,11 +25,9 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
     var cellNum = 0 // 現在時刻以前に来るバスの数
     var num = 0
     
-    @IBOutlet weak var destinationLabel: UILabel!
     @IBOutlet weak var getOnBusStop: UILabel!
     @IBOutlet weak var getOffBusStop: UILabel!
     @IBOutlet weak var delayTimeList: UITableView!
-    @IBOutlet weak var getOnBusStop2: UILabel!
     @IBOutlet weak var cellLabel1: UILabel!
     @IBOutlet weak var cellLabel2: UILabel!
     
@@ -45,10 +43,8 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
         let cal_comp: DateComponents = cal.dateComponents([.hour, .minute], from:now)
         
         /* ━━━━━━━━━━━━━━━━━━━━━━━━━目的地、乗車地、降車地を設定━━━━━━━━━━━━━━━━━━━━━━━━━ */
-        destinationLabel.text = "目的地：" + getOff!
         getOnBusStop.text = getOn
         getOffBusStop.text = getOff
-        getOnBusStop2.text = getOnBusStop.text!
         
         /* ━━━━━━━━━━━━━━━━━━━━━━━━━━亀田支所以降のバス停の時刻表━━━━━━━━━━━━━━━━━━━━━━━━━ */
         if busLineChk(geton: getOnBusStop.text!, getoff: getOffBusStop.text!) {
