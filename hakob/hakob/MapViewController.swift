@@ -145,18 +145,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         busAnnotations.removeAll()
         
         for i in 0..<name.count {
+            
+            let Annotation = MKPointAnnotation()
+            Annotation.coordinate = CLLocationCoordinate2DMake((latdown[i]+latup[i])/2, (londown[i]+lonup[i])/2)
+            Annotation.title = name[i]
+            
             if(searchBar.text == "") {
+                nameResult.append(name[i])
                 
+                self.busAnnotations.append(Annotation)
             } else if (name[i].contains(searchBar.text!)) {
                 nameResult.append(name[i])
 
-                let Annotation = CustomAnnotation()
-                Annotation.coordinate = CLLocationCoordinate2DMake((latup[i]+latdown[i])/2, (lonup[i]+londown[i])/2)
-                Annotation.title = name[i]
-                
-                Annotation.busstopName = name[i]
-                Annotation.subtitle = "おおよその位置"
-                
                 self.busAnnotations.append(Annotation)
             }
         }
