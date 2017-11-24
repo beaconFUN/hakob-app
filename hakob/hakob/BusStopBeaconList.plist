@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>stopName</key>
+		<string>亀田支所前</string>
+		<key>major</key>
+		<string>1</string>
+		<key>minor</key>
+		<string>65535</string>
+	</dict>
+	<dict>
+		<key>stopName</key>
+		<string>はこだて未来大学</string>
+		<key>major</key>
+		<string>2</string>
+		<key>minor</key>
+		<string>65535</string>
+	</dict>
+	<dict>
+		<key>stopName</key>
+		<string>赤川1丁目ライフプレステージ白ゆり美原前</string>
+		<key>major</key>
+		<string>4</string>
+		<key>minor</key>
+		<string>65535</string>
+	</dict>
+</array>
+</plist>
