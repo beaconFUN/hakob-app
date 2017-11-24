@@ -325,9 +325,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 if proximity == "Far" {
                     
                     for bus in busBeacons {
+                        //print(bus.busStopName)
+                        print(userdefault?.string(forKey: "busstopName"))
                         if userdefault?.string(forKey: "busstopName") == bus.busStopName {
                             if Int(majorID) == bus.major && Int(minorID) == bus.minor {
-                                NotificationManager.postLocalNotificationIfNeeded(message: "亀田支所", major: Int(majorID), minor: Int(minorID))
+                                NotificationManager.postLocalNotificationIfNeeded(message: "\(bus.busStopName!)", major: Int(majorID), minor: Int(minorID))
                             }
                         }
                     }

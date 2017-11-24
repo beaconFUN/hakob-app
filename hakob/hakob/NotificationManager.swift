@@ -17,9 +17,9 @@ struct NotificationManager {
      - parameter message:  表示メッセージ
      */
     static func postLocalNotificationIfNeeded(message: String, major: Int, minor: Int) {
-        if !shouldNotifyWithMessage(message: message, major: major, minor: minor) {
-            return
-        }
+//        if !shouldNotifyWithMessage(message: message, major: major, minor: minor) {
+//            return
+//        }
         
         print(message)
         

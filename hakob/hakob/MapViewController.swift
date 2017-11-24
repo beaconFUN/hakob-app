@@ -234,6 +234,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let TableVC = segue.destination as! getOnBusTimeTable
         
+        UserDefaults.standard.set(getOn, forKey: "busstopName")
+        
         TableVC.getOn = getOn
         TableVC.getOff = getOff
         TableVC.destLocation = self.destLocation
