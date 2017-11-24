@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var beaconUuids: NSMutableArray!
     var beaconDetails: NSMutableArray!
     
+    var userdefault: UserDefaults?
+    
+    var busBeacons: [busBeacon] = []
+    
     // 今回の検知対象は3つのUUID。(OS等のバージョンで検出可能な上限数は20個程度が目安)
     let UUIDList = [
         "01000000-0000-0000-0000-000000000000"
@@ -46,7 +50,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             }
         }
 
+        removeUserDefaults()
+        userdefault = UserDefaults()
+        
+        makeBeaconList()
+        
         return true
+    }
+    
+    func removeUserDefaults() {
+        let appDomain = Bundle.main.bundleIdentifier
+        UserDefaults.standard.removePersistentDomain(forName: appDomain!)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -307,11 +321,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 myBeaconDetails += "RSSI:\(rssi)"
                 print(myBeaconDetails)
                 beaconDetails.add(myBeaconDetails)
-                
+                userdefault?.integer(forKey: "busStopNum")
                 if proximity == "Far" {
-                    if majorID == 1 && minorID == 65535 {
-                        NotificationManager.postLocalNotificationIfNeeded(message: "亀田支所", major: Int(majorID), minor: Int(minorID))
+                    
+                    for bus in busBeacons {
+                        if userdefault?.string(forKey: "busstopName") == bus.busStopName {
+                            if Int(majorID) == bus.major && Int(minorID) == bus.minor {
+                                NotificationManager.postLocalNotificationIfNeeded(message: "亀田支所", major: Int(majorID), minor: Int(minorID))
+                            }
+                        }
                     }
+                    
                 }
                 
             }
@@ -341,5 +361,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         manager.stopUpdatingLocation()
     }
 
+    func makeBeaconList(){
+        if let path = Bundle.main.path(forResource: "BusStopBeaconList", ofType: "plist") {
+            if let dictArray = NSArray(contentsOfFile: path) {
+                for item in dictArray {
+                    if let dict = item as? NSDictionary {
+                        print(dict)
+                        let name = dict["stopName"] as! String
+                        let major = dict["major"] as! String
+                        let minor = dict["minor"] as! String
+                        
+                        let iBeacon = busBeacon(name: name, major: Int(major)!, minor: Int(minor)!)
+
+                        busBeacons.append(iBeacon)
+                    }
+                }
+            }
+        }
+    }
+    
 }
 
