@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g3q-tl-yyO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17B48" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="g3q-tl-yyO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,7 +28,7 @@
             </objects>
             <point key="canvasLocation" x="-627" y="-699"/>
         </scene>
-        <!--降車地を選択-->
+        <!--バス停を選択-->
         <scene sceneID="ce7-x9-8mP">
             <objects>
                 <viewController id="fRv-0H-sJc" customClass="MapViewController" customModule="hakob" customModuleProvider="target" sceneMemberID="viewController">
@@ -120,7 +120,7 @@
                             <constraint firstItem="qiM-eB-crk" firstAttribute="leading" secondItem="iYF-ZB-HIz" secondAttribute="leading" id="uRf-bL-Uiu"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="降車地を選択" id="opd-1v-KTq"/>
+                    <navigationItem key="navigationItem" title="バス停を選択" id="opd-1v-KTq"/>
                     <connections>
                         <outlet property="OKButton" destination="cdA-Op-LsI" id="WsS-kJ-u36"/>
                         <outlet property="getOffBusStop" destination="fFW-ov-51b" id="pUz-MW-QgB"/>
@@ -134,7 +134,7 @@
             </objects>
             <point key="canvasLocation" x="120.8" y="-699.40029985007504"/>
         </scene>
-        <!--Get On Bus Time Table-->
+        <!--時刻表-->
         <scene sceneID="pEm-RK-Rln">
             <objects>
                 <viewController id="vKi-3g-ojA" customClass="getOnBusTimeTable" customModule="hakob" customModuleProvider="target" sceneMemberID="viewController">
@@ -253,7 +253,7 @@
                             <constraint firstItem="y9a-Eb-xWq" firstAttribute="trailing" secondItem="xOP-7X-KCA" secondAttribute="trailing" id="xxZ-Eb-ivN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="2Ln-GM-YPG"/>
+                    <navigationItem key="navigationItem" title="時刻表" id="12s-fb-wrh"/>
                     <connections>
                         <outlet property="delayTimeList" destination="ua2-nd-86R" id="QK5-cv-88E"/>
                         <outlet property="getOffBusStop" destination="y9a-Eb-xWq" id="0Lq-30-i3g"/>
@@ -263,9 +263,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tWk-AA-DNs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-628" y="124.58770614692655"/>
+            <point key="canvasLocation" x="985" y="-699"/>
         </scene>
-        <!--Bus Line-->
+        <!--マップ-->
         <scene sceneID="Ptc-eL-t0D">
             <objects>
                 <viewController id="89f-gk-L4m" customClass="busLine" customModule="hakob" customModuleProvider="target" sceneMemberID="viewController">
@@ -311,6 +311,7 @@
                             <constraint firstItem="zg9-a4-jBn" firstAttribute="top" secondItem="iUg-qq-xhX" secondAttribute="bottom" id="ycy-4C-TJ7"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="マップ" id="GFi-K7-aaQ"/>
                     <connections>
                         <outlet property="busLine" destination="SeS-N3-gif" id="ZjO-Vc-aiC"/>
                         <outlet property="busStopMap" destination="zg9-a4-jBn" id="Djz-jh-sLu"/>
@@ -318,7 +319,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ch1-BD-SAJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="120.8" y="124.58770614692655"/>
+            <point key="canvasLocation" x="1734" y="-699"/>
         </scene>
     </scenes>
 </document>

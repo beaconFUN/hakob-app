@@ -26,7 +26,7 @@ struct NotificationManager {
         // content
         let content = UNMutableNotificationContent()
         content.title = message
-        content.body = "バスが接近しています"
+        content.body = "バス停が近くにあります"
         content.sound = UNNotificationSound.default()
         
         // trigger
