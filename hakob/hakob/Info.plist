@@ -24,8 +24,6 @@
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>ビーコン検知のために使用します</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>位置情報をこのアプリの起動時に使います</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

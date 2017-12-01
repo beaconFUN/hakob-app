@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     var busBeacons: [busBeacon] = []
     
+    var backgroundTaskID : UIBackgroundTaskIdentifier = 0
+    
     // 今回の検知対象は3つのUUID。(OS等のバージョンで検出可能な上限数は20個程度が目安)
     let UUIDList = [
         "01000000-0000-0000-0000-000000000000"
@@ -50,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             }
         }
 
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        
         removeUserDefaults()
         userdefault = UserDefaults()
         
@@ -133,10 +137,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func setupbeacon(){
+        
         // ロケーションマネージャの作成.
         myLocationManager = CLLocationManager()
+        myLocationManager.allowsBackgroundLocationUpdates = true
         // デリゲートを自身に設定.
         myLocationManager.delegate = self
+        
         // 取得精度の設定.
         myLocationManager.desiredAccuracy = kCLLocationAccuracyBest
         // 取得頻度の設定.(1mごとに位置情報取得)
@@ -321,7 +328,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 myBeaconDetails += "RSSI:\(rssi)"
                 print(myBeaconDetails)
                 beaconDetails.add(myBeaconDetails)
-                userdefault?.integer(forKey: "busStopNum")
+                
                 if proximity == "Far" {
                     var currentBusStop: Bool = false
                     for bus in busBeacons {
@@ -334,7 +341,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                             }
                         }
                     }
-                    if !currentBusStop {
+                    if !currentBusStop && userdefault?.string(forKey: "busstopName") != nil {
                         NotificationManager.postLocalNotificationIfNeeded(message: "\(String(describing: userdefault?.string(forKey: "busstopName")))")
                     }
                 }
