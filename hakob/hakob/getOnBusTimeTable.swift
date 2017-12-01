@@ -11,7 +11,7 @@ import Foundation
 import MapKit
 
 class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var busStop = ["亀田支所前", "函館地方気象台前", "赤川通", "赤川1丁目ライフプレステージ白ゆり美原前", "赤川入口", "低区貯水池", "浄水場下", "赤川小学校", "赤川3区", "赤川貯水池", "はこだて未来大学"]
+    var busStop:[String] = []
 
     let stopTimeKameda105Nobori = [8*60+3, 8*60+9, 8*60+40, 9*60+14, 9*60+28, 10*60+11, 10*60+16, 10*60+34, 11*60+4, 11*60+11, 11*60+49, 12*60+12, 13*60+12, 13*60+20, 13*60+45, 14*60+58, 15*60+27, 16*60+10, 17*60+9, 17*60+34, 18*60+21, 18*60+54, 19*60+28, 20*60+35] // 亀田支所の105系統上りの時刻表
     let stopTimeKameda105Kudari = [8*60+15, 8*60+21, 8*60+52, 9*60+26, 9*60+40, 10*60+23, 10*60+28, 10*60+46, 11*60+16, 11*60+23, 12*60+1, 13*60+24,  13*60+32, 13*60+57, 15*60+10, 15*60+39, 16*60+22, 17*60+21, 18*60+46, 19*60+19, 19*60+53, 20*60+12, 20*60+55] // 亀田支所の105系統下りの時刻表
@@ -104,23 +104,23 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
             switch getOnBusStop.text! {
             case busStop[0]:
                 for i in 0 ..< stopTimeKameda105Kudari.count {
-                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[10])
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[0])
                 }
             case busStop[1]:
                 for i in 0 ..< stopTimeKameda105Kudari.count {
-                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[9])
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[1])
                 }
             case busStop[2]:
                 for i in 0 ..< stopTimeKameda105Kudari.count {
-                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[8])
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[2])
                 }
             case busStop[3]:
                 for i in 0 ..< stopTimeKameda105Kudari.count {
-                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[7])
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[3])
                 }
             case busStop[4]:
                 for i in 0 ..< stopTimeKameda105Kudari.count {
-                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[6])
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[4])
                 }
             case busStop[5]:
                 for i in 0 ..< stopTimeKameda105Kudari.count {
@@ -128,23 +128,23 @@ class getOnBusTimeTable: UIViewController, UITableViewDelegate, UITableViewDataS
                 }
             case busStop[6]:
                 for i in 0 ..< stopTimeKameda105Kudari.count {
-                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[4])
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[6])
                 }
             case busStop[7]:
                 for i in 0 ..< stopTimeKameda105Kudari.count {
-                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[3])
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[7])
                 }
             case busStop[8]:
                 for i in 0 ..< stopTimeKameda105Kudari.count {
-                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[2])
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[8])
                 }
             case busStop[9]:
                 for i in 0 ..< stopTimeKameda105Kudari.count {
-                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[1])
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[9])
                 }
             case busStop[10]:
                 for i in 0 ..< stopTimeKameda105Kudari.count {
-                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[0])
+                    busStopsTime?.append(stopTimeKameda105Kudari[i]+timeFromKameda[10])
                 }
             default:
                 for i in 0 ..< stopTimeKameda105Kudari.count {

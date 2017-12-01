@@ -28,7 +28,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
     var getOff:String?
     
     //バス停名
-    var name:[String] = ["はこだて未来大学","赤川貯水池", "赤川3区","赤川小学校","浄水場下","低区貯水池","赤川入口","赤川1丁目ライフプレステージ白ゆり美原前","赤川通","函館地方気象台前","亀田支所前"]
+    var busStop:[String] = ["はこだて未来大学","赤川貯水池", "赤川3区","赤川小学校","浄水場下","低区貯水池","赤川入口","赤川1丁目ライフプレステージ白ゆり美原前","赤川通","函館地方気象台前","亀田支所前"]
     //バス停緯度(下り)
     var latdown = [41.84023749,41.84237276,41.8384083,41.83527926,41.83045442,41.8266245,41.82451423,41.82262856,41.81975665,41.81728726,41.81415281,]
     //バス停経度(下り)
@@ -75,7 +75,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         for i in 0..<11 {
             let Annotation = MKPointAnnotation()
             Annotation.coordinate = CLLocationCoordinate2DMake((latdown[i]+latup[i])/2, (londown[i]+lonup[i])/2)
-            Annotation.title = name[i]
+            Annotation.title = busStop[i]
             
             self.busAnnotations.append(Annotation)
         }
@@ -144,18 +144,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         searchBar.endEditing(true)
         busAnnotations.removeAll()
         
-        for i in 0..<name.count {
+        for i in 0..<busStop.count {
             
             let Annotation = MKPointAnnotation()
             Annotation.coordinate = CLLocationCoordinate2DMake((latdown[i]+latup[i])/2, (londown[i]+lonup[i])/2)
-            Annotation.title = name[i]
+            Annotation.title = busStop[i]
             
             if(searchBar.text == "") {
-                nameResult.append(name[i])
+                nameResult.append(busStop[i])
                 
                 self.busAnnotations.append(Annotation)
-            } else if (name[i].contains(searchBar.text!)) {
-                nameResult.append(name[i])
+            } else if (busStop[i].contains(searchBar.text!)) {
+                nameResult.append(busStop[i])
 
                 self.busAnnotations.append(Annotation)
             }
@@ -194,7 +194,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
             //乗車地
             self.getOn = (view.annotation?.title)!
             self.getOnBusStop.text = self.getOn
-            self.destLocation = view.annotation as! MKPointAnnotation
+            //self.destLocation = view.annotation as! MKPointAnnotation
+            
+            
+            
             print(view.annotation?.title)
             print(self.getOn!)
             
@@ -235,10 +238,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         let TableVC = segue.destination as! getOnBusTimeTable
         
         UserDefaults.standard.set(getOn, forKey: "busstopName")
+        let index = busStop.index(of: getOn!)
+        let Annotation = MKPointAnnotation()
+        Annotation.title = busStop[index!]
+        if busLineChk(geton: getOn!, getoff: getOff!) {
+            TableVC.busStop = busStop
+            Annotation.coordinate = CLLocationCoordinate2DMake(latup[index!], lonup[index!])
+        } else {
+            TableVC.busStop = busStop.reversed()
+            Annotation.coordinate = CLLocationCoordinate2DMake(latdown[index!], londown[index!])
+        }
         
         TableVC.getOn = getOn
         TableVC.getOff = getOff
-        TableVC.destLocation = self.destLocation
+        TableVC.destLocation = Annotation
     }
 
     @IBAction func nextVC(_ sender: Any) {
@@ -250,6 +263,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
 
     }
 
+    // true 未来大方面(のぼり) : false 亀田支所方面(くだり)
+    private func busLineChk(geton: String, getoff: String) -> Bool {
+        var stop1: Int
+        var stop2: Int
+        
+        if (busStop.index(of: geton) != nil) && (busStop.index(of: getoff) != nil) {
+            stop1 = busStop.index(of: geton)!
+            stop2 = busStop.index(of: getoff)!
+            
+            if stop1 < stop2 {
+                return true
+            }
+        }
+        
+        
+        return false;
+    }
+    
     
     /*
      // MARK: - Navigation
