@@ -84,7 +84,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         
         
         //位置情報使用許可のリクエストを表示するメソッドの呼び出し
-        myLocationManager.requestWhenInUseAuthorization()
         myLocationManager.startUpdatingLocation()
         
         mapView.userTrackingMode = .follow
