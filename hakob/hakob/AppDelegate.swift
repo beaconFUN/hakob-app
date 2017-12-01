@@ -323,17 +323,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 beaconDetails.add(myBeaconDetails)
                 userdefault?.integer(forKey: "busStopNum")
                 if proximity == "Far" {
-                    
+                    var currentBusStop: Bool = false
                     for bus in busBeacons {
                         //print(bus.busStopName)
                         print(userdefault?.string(forKey: "busstopName"))
                         if userdefault?.string(forKey: "busstopName") == bus.busStopName {
                             if Int(majorID) == bus.major && Int(minorID) == bus.minor {
                                 NotificationManager.postLocalNotificationIfNeeded(message: "\(bus.busStopName!)", major: Int(majorID), minor: Int(minorID))
+                                currentBusStop = true
                             }
                         }
                     }
-                    
+                    if !currentBusStop {
+                        NotificationManager.postLocalNotificationIfNeeded(message: "\(String(describing: userdefault?.string(forKey: "busstopName")))")
+                    }
                 }
                 
             }
