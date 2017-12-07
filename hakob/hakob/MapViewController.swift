@@ -240,11 +240,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UISearchBa
         let index = busStop.index(of: getOn!)
         let Annotation = MKPointAnnotation()
         Annotation.title = busStop[index!]
+        var tmp = busStop
+        var n = 0
+        while n < busStop.count-Int(busStop.index(of: getOff!)!)-1 {
+            tmp.removeLast()
+            n += 1
+        }
+        
+        n = 0
+        while n < index! {
+            tmp.removeFirst()
+            n += 1
+        }
+        
         if busLineChk(geton: getOn!, getoff: getOff!) {
-            TableVC.busStop = busStop
+            TableVC.busStop = tmp
             Annotation.coordinate = CLLocationCoordinate2DMake(latup[index!], lonup[index!])
         } else {
-            TableVC.busStop = busStop.reversed()
+            TableVC.busStop = tmp.reversed()
             Annotation.coordinate = CLLocationCoordinate2DMake(latdown[index!], londown[index!])
         }
         
