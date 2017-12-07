@@ -330,9 +330,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 myBeaconDetails += "RSSI:\(rssi)"
                 print(myBeaconDetails)
                 beaconDetails.add(myBeaconDetails)
-                
+                var currentBusStop: Bool = false
                 if proximity == "Far" {
-                    var currentBusStop: Bool = false
+                    for bus in busBeacons {
+                        for route in bus.busRoute! {
+                            if userdefault?.string(forKey: "busstopName") == route {
+                                NotificationManager.postLocalNotificationBusBeaconIfNeeded(message: route)
+                            }
+                        }
+                    }
+                }
+                if proximity == "Immediate" {
                     for busStop in busStopBeacons {
                         //print(bus.busStopName)
                         print(userdefault?.string(forKey: "busstopName"))
@@ -345,13 +353,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                     }
                     if !currentBusStop && userdefault?.string(forKey: "busstopName") != nil {
                         NotificationManager.postLocalNotificationIfNeeded(message: "\(String(describing: userdefault?.string(forKey: "busstopName")))")
-                    }
-                    for bus in busBeacons {
-                        for route in bus.busRoute! {
-                            if userdefault?.string(forKey: "busstopName") == route {
-                                NotificationManager.postLocalNotificationBusBeaconIfNeeded(message: route)
-                            }
-                        }
                     }
                 }
                 
