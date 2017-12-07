@@ -7,12 +7,12 @@
 //
 
 class busBeacon {
-    var busName: String?
+    var busRoute: [String]?
     var major: Int?
     var minor: Int?
     
-    init(name: String, major: Int, minor: Int){
-        self.busName = name
+    init(route: [String], major: Int, minor: Int){
+        self.busRoute = route
         self.major = major
         self.minor = minor
     }

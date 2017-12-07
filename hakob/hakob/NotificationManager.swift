@@ -46,6 +46,37 @@ struct NotificationManager {
         }
     }
     
+    static func postLocalNotificationBusBeaconIfNeeded(message: String) {
+        if !shouldNotifyWithMessage(message: message) {
+            return
+        }
+        
+        print(message)
+        
+        // content
+        let content = UNMutableNotificationContent()
+        content.title = message
+        content.body = "バスが到着しました"
+        content.sound = UNNotificationSound.default()
+        
+        // trigger
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: Double(0.1), repeats: false)
+        
+        // request includes content & trigger
+        let request = UNNotificationRequest(identifier: "correct",
+                                            content: content,
+                                            trigger: trigger)
+        
+        // schedule notification by adding request to notification center
+        let center = UNUserNotificationCenter.current()
+        center.add(request) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    
     static func postLocalNotificationIfNeeded(message: String) {
         if !shouldNotifyWithMessage(message: message) {
             return

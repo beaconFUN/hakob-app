@@ -59,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         userdefault = UserDefaults()
         
         makeBeaconList()
+        makeBusBeaconList()
         
         return true
     }
@@ -345,6 +346,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                     if !currentBusStop && userdefault?.string(forKey: "busstopName") != nil {
                         NotificationManager.postLocalNotificationIfNeeded(message: "\(String(describing: userdefault?.string(forKey: "busstopName")))")
                     }
+                    for bus in busBeacons {
+                        for route in bus.busRoute! {
+                            if userdefault?.string(forKey: "busstopName") == route {
+                                NotificationManager.postLocalNotificationBusBeaconIfNeeded(message: route)
+                            }
+                        }
+                    }
                 }
                 
             }
@@ -394,16 +402,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func makeBusBeaconList(){
-        if let path = Bundle.main.path(forResource: "BusStopBeaconList", ofType: "plist") {
+        if let path = Bundle.main.path(forResource: "BusBeaconList", ofType: "plist") {
             if let dictArray = NSArray(contentsOfFile: path) {
                 for item in dictArray {
                     if let dict = item as? NSDictionary {
                         print(dict)
-                        let name = dict["stopName"] as! String
+                        let route = dict["route"] as! [String]
                         let major = dict["major"] as! String
                         let minor = dict["minor"] as! String
                         
-                        let iBeacon = busBeacon(name: name, major: Int(major)!, minor: Int(minor)!)
+                        let iBeacon = busBeacon(route: route, major: Int(major)!, minor: Int(minor)!)
                         
                         busBeacons.append(iBeacon)
                     }

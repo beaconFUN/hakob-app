@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   BusBeaconList.plist
-   hakob
-
-   Created by 佐藤秀輔 on 2017/11/14.
-   Copyright (c) 2017年 佐藤秀輔. All rights reserved.
--->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-    
-    </dict>
+<array>
+	<dict>
+        <key>major</key>
+        <string>4</string>
+        <key>minor</key>
+        <string>65536</string>
+        <key>route</key>
+        <array>
+            <string>はこだて未来大学</string>
+            <string>赤川貯水池</string>
+            <string>赤川3区</string>
+            <string>赤川小学校</string>
+            <string>浄水場下</string>
+            <string>低区貯水池</string>
+            <string>赤川入り口</string>
+            <string>赤川1丁目ライフプレステージ白ゆり美原前</string>
+            <string>赤川通</string>
+            <string>函館地方気象台前</string>
+            <string>亀田支所前</string>
+        </array>
+	</dict>
+</array>
 </plist>
