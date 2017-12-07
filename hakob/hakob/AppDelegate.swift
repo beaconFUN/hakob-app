@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     var userdefault: UserDefaults?
     
+    var busStopBeacons: [busStopBeacon] = []
     var busBeacons: [busBeacon] = []
     
     var backgroundTaskID : UIBackgroundTaskIdentifier = 0
@@ -58,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         userdefault = UserDefaults()
         
         makeBeaconList()
+        makeBusBeaconList()
         
         return true
     }
@@ -328,15 +330,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 myBeaconDetails += "RSSI:\(rssi)"
                 print(myBeaconDetails)
                 beaconDetails.add(myBeaconDetails)
-                
+                var currentBusStop: Bool = false
                 if proximity == "Far" {
-                    var currentBusStop: Bool = false
                     for bus in busBeacons {
+                        for route in bus.busRoute! {
+                            if userdefault?.string(forKey: "busstopName") == route {
+                                NotificationManager.postLocalNotificationBusBeaconIfNeeded(message: route)
+                            }
+                        }
+                    }
+                }
+                if proximity == "Immediate" {
+                    for busStop in busStopBeacons {
                         //print(bus.busStopName)
                         print(userdefault?.string(forKey: "busstopName"))
-                        if userdefault?.string(forKey: "busstopName") == bus.busStopName {
-                            if Int(majorID) == bus.major && Int(minorID) == bus.minor {
-                                NotificationManager.postLocalNotificationIfNeeded(message: "\(bus.busStopName!)", major: Int(majorID), minor: Int(minorID))
+                        if userdefault?.string(forKey: "busstopName") == busStop.busStopName {
+                            if Int(majorID) == busStop.major && Int(minorID) == busStop.minor {
+                                NotificationManager.postLocalNotificationIfNeeded(message: "\(busStop.busStopName!)", major: Int(majorID), minor: Int(minorID))
                                 currentBusStop = true
                             }
                         }
@@ -383,8 +393,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                         let major = dict["major"] as! String
                         let minor = dict["minor"] as! String
                         
-                        let iBeacon = busBeacon(name: name, major: Int(major)!, minor: Int(minor)!)
+                        let iBeacon = busStopBeacon(name: name, major: Int(major)!, minor: Int(minor)!)
 
+                        busStopBeacons.append(iBeacon)
+                    }
+                }
+            }
+        }
+    }
+    
+    func makeBusBeaconList(){
+        if let path = Bundle.main.path(forResource: "BusBeaconList", ofType: "plist") {
+            if let dictArray = NSArray(contentsOfFile: path) {
+                for item in dictArray {
+                    if let dict = item as? NSDictionary {
+                        print(dict)
+                        let route = dict["route"] as! [String]
+                        let major = dict["major"] as! String
+                        let minor = dict["minor"] as! String
+                        
+                        let iBeacon = busBeacon(route: route, major: Int(major)!, minor: Int(minor)!)
+                        
                         busBeacons.append(iBeacon)
                     }
                 }
