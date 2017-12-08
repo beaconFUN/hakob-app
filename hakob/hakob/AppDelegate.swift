@@ -333,9 +333,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 var currentBusStop: Bool = false
                 if proximity == "Far" {
                     for bus in busBeacons {
-                        for route in bus.busRoute! {
-                            if userdefault?.string(forKey: "busstopName") == route {
-                                NotificationManager.postLocalNotificationBusBeaconIfNeeded(message: route)
+                        if Int(majorID) == bus.major && Int(minorID) == bus.minor {
+                            for route in bus.busRoute! {
+                                if userdefault?.string(forKey: "busstopName") == route {
+                                    NotificationManager.postLocalNotificationBusBeaconIfNeeded(message: route)
+                                }
                             }
                         }
                     }

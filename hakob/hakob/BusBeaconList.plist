@@ -3,24 +3,24 @@
 <plist version="1.0">
 <array>
 	<dict>
-        <key>major</key>
-        <string>4</string>
-        <key>minor</key>
-        <string>65536</string>
-        <key>route</key>
-        <array>
-            <string>はこだて未来大学</string>
-            <string>赤川貯水池</string>
-            <string>赤川3区</string>
-            <string>赤川小学校</string>
-            <string>浄水場下</string>
-            <string>低区貯水池</string>
-            <string>赤川入り口</string>
-            <string>赤川1丁目ライフプレステージ白ゆり美原前</string>
-            <string>赤川通</string>
-            <string>函館地方気象台前</string>
-            <string>亀田支所前</string>
-        </array>
+		<key>major</key>
+		<string>4</string>
+		<key>minor</key>
+		<string>65535</string>
+		<key>route</key>
+		<array>
+			<string>はこだて未来大学</string>
+			<string>赤川貯水池</string>
+			<string>赤川3区</string>
+			<string>赤川小学校</string>
+			<string>浄水場下</string>
+			<string>低区貯水池</string>
+			<string>赤川入り口</string>
+			<string>赤川1丁目ライフプレステージ白ゆり美原前</string>
+			<string>赤川通</string>
+			<string>函館地方気象台前</string>
+			<string>亀田支所前</string>
+		</array>
 	</dict>
 </array>
 </plist>
